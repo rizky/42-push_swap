@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/02/26 21:20:11 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/02/26 21:48:12 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,71 +37,6 @@ void
 	printf("--- ---\n");
 	printf("%2s  %2s\n", "a", "b");
 	printf("--------------------------------------------------\n");
-}
-
-void
-	pf_swap(t_array *d)
-{
-	int temp;
-
-	if (d->size < 2)
-		return ;
-	temp = ((int*)ARRAY_START(d))[d->size-2];
-	((int*)ARRAY_START(d))[d->size-2] = ((int*)ARRAY_START(d))[d->size-1];
-	((int*)ARRAY_START(d))[d->size-1] = temp;
-}
-
-void
-	pf_push(t_array *source, t_array *dest)
-{
-	int temp;
-
-	if (source->size == 0)
-		return ;
-	temp = ((int*)ARRAY_START(source))[source->size-1];
-	fta_popback(source, 1);
-	fta_append(dest, &temp, 1);
-}
-
-void
-	pf_rotate(t_array *d)
-{
-	int temp;
-
-	if (d->size == 0)
-		return ;
-	temp = ((int*)ARRAY_START(d))[0];
-	fta_popindex(d, 0, 1);
-	fta_append(d, &temp, 1);
-}
-
-void
-	pf_rev_rotate(t_array *d)
-{
-	int temp;
-
-	if (d->size == 0)
-		return ;
-	temp = ((int*)ARRAY_START(d))[d->size-1];
-	fta_popback(d, 1);
-	fta_insert(d, &temp, 1, 0);
-}
-
-int
-	pf_is_sorted(t_array *d)
-{
-	int	i;
-
-	if (d->size == 0)
-		return (1);
-	i = d->size - 1;
-	while (i > 0)
-	{
-		if (((int*)ARRAY_START(d))[i - 1] < ((int*)ARRAY_START(d))[i])
-			return (0);
-		i--;
-	}
-	return (1);
 }
 
 int

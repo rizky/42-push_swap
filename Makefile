@@ -6,12 +6,12 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/02/26 15:00:58 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/02/26 21:49:19 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:=checker
-FILES:= checker \
+FILES:= ft_checker ft_stack_operators
 
 # ----- Libft ------
 LFTDIR:=./libft
