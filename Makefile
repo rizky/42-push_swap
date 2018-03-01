@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/01 16:00:50 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/01 16:41:05 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,18 +44,20 @@ EOC:="\033[0;0m"
 # ------ Auto ------
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
+OBJ_C:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILE_C)))
+OBJ_PW:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILE_PW)))
 # ==================
 CCHF:=.cache_exists
 
-all: $(NAME_C) $(NAME_PW)
+all: $(NAME_C) | $(NAME_PW)
 
-$(NAME_C): $(OBJ)
+$(NAME_C): $(OBJ) | $(OBJ_C)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_C).c -o $(NAME_C)
 	@echo $(GREEN) " - OK" $(EOC)
 
-$(NAME_PW): $(OBJ)
+$(NAME_PW): $(OBJ) | $(OBJ_C)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_PW).c -o $(NAME_PW)

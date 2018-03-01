@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/01 15:51:02 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:04:52 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,45 +47,45 @@ int
 			if (line[0] == 's')
 			{
 				if (line[1] == 'a')
-					pf_swap(&a);
+					pw_swap(&a);
 				else
-					pf_swap(&b);
+					pw_swap(&b);
 			}
 			else if (line[0] == 'p')
 			{
 				if (line[1] == 'a')
-					pf_push(&b, &a);
+					pw_push(&b, &a);
 				else
-					pf_push(&a, &b);
+					pw_push(&a, &b);
 			}
 			else if (line[0] == 'r' && ft_strlen(line) == 2)
 			{
 				if (line[1] == 'a')
-					pf_rotate(&a);
+					pw_rotate(&a);
 				else if (line[1] == 'b')
-					pf_rotate(&b);
+					pw_rotate(&b);
 				else
 				{
-					pf_rotate(&a);
-					pf_rotate(&b);
+					pw_rotate(&a);
+					pw_rotate(&b);
 				}
 			}
 			else if (line[0] == 'r' && ft_strlen(line) == 3)
 			{
 				if (line[2] == 'a')
-					pf_rev_rotate(&a);
+					pw_rev_rotate(&a);
 				else if (line[2] == 'b')
-					pf_rev_rotate(&b);
+					pw_rev_rotate(&b);
 				else
 				{
-					pf_rev_rotate(&a);
-					pf_rev_rotate(&b);
+					pw_rev_rotate(&a);
+					pw_rev_rotate(&b);
 				}
 			}
 			if (is_verbose)
-				pf_print_stack(&a, &b);
+				pw_print_stack(&a, &b);
 		}
-		if (b.size == 0 && pf_is_sorted(&a))
+		if (b.size == 0 && pw_is_sorted(&a))
 			printf("OK\n");
 		else
 			printf("KO\n");

@@ -6,14 +6,14 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/01 15:47:48 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:39:22 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void
-	pf_swap(t_array *d)
+	pw_swap(t_array *d)
 {
 	int temp;
 
@@ -25,7 +25,7 @@ void
 }
 
 void
-	pf_push(t_array *source, t_array *dest)
+	pw_push(t_array *source, t_array *dest)
 {
 	int temp;
 
@@ -37,7 +37,7 @@ void
 }
 
 void
-	pf_rotate(t_array *d)
+	pw_rotate(t_array *d)
 {
 	int temp;
 
@@ -49,7 +49,7 @@ void
 }
 
 void
-	pf_rev_rotate(t_array *d)
+	pw_rev_rotate(t_array *d)
 {
 	int temp;
 
@@ -61,14 +61,14 @@ void
 }
 
 int
-	pf_is_sorted(t_array *d)
+	pw_is_sorted(t_array *d)
 {
 	int	i;
 
 	if (d->size == 0)
 		return (1);
 	i = d->size - 1;
-	while (i > 0)
+	while (i >= 0)
 	{
 		if (((int*)ARRAY_START(d))[i - 1] < ((int*)ARRAY_START(d))[i])
 			return (0);
@@ -78,7 +78,7 @@ int
 }
 
 void
-	pf_print_stack(t_array *a, t_array *b)
+	pw_print_stack(t_array *a, t_array *b)
 {
 	int i;
 

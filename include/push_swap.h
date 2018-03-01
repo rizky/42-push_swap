@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/01 15:49:08 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:04:32 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "libft.h"
 
-void		pf_swap(t_array *d);
-void		pf_push(t_array *source, t_array *dest);
-void		pf_rotate(t_array *d);
-void		pf_rev_rotate(t_array *d);
-int			pf_is_sorted(t_array *d);
-void		pf_print_stack(t_array *a, t_array *b);
+void		pw_swap(t_array *d);
+void		pw_push(t_array *source, t_array *dest);
+void		pw_rotate(t_array *d);
+void		pw_rev_rotate(t_array *d);
+int			pw_is_sorted(t_array *d);
+void		pw_print_stack(t_array *a, t_array *b);
 #endif
