@@ -6,13 +6,15 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/01 15:52:57 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/01 16:00:50 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_C:=checker
-NAME_PW:=checker
+NAME_PW:=push_swap
 FILES:= ft_pw_operators
+FILE_C:= ft_checker
+FILE_PW:= ft_push_swap
 
 # ----- Libft ------
 LFTDIR:=./libft
@@ -45,12 +47,18 @@ OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
 
-all: $(NAME)
+all: $(NAME_C) $(NAME_PW)
 
-$(NAME): $(OBJ)
+$(NAME_C): $(OBJ)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) -o $(NAME)
+	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_C).c -o $(NAME_C)
+	@echo $(GREEN) " - OK" $(EOC)
+
+$(NAME_PW): $(OBJ)
+	@cd $(LFTDIR) && $(MAKE)
+	@echo $(CYAN) " - Compiling $@" $(RED)
+	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_PW).c -o $(NAME_PW)
 	@echo $(GREEN) " - OK" $(EOC)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHF)
@@ -70,7 +78,8 @@ clean:
 	@cd $(LFTDIR) && $(MAKE) clean
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME_C)
+	@rm -f $(NAME_PW)
 	@rm -f test_me
 	@rm -rf test_me.dSYM/
 	@rm -rf a.out.dSYM/
@@ -79,13 +88,15 @@ fclean: clean
 re: fclean
 	@$(MAKE) all
 
-test: $(NAME)
+test: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) -g -w $(CFLAGS) src/main.c $(SRC) $(LFLAGS) -o test_me
+	@$(COMPILER) -g -w $(CFLAGS) $(SRCPATH)$(FILE_C).c $(SRC) $(LFLAGS) -o checker
+	@$(COMPILER) -g -w $(CFLAGS) $(SRCPATH)$(FILE_PW).c $(SRC) $(LFLAGS) -o push_swap
 
-debug: $(NAME)
+debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) -g $(IFLAGS) $(SRC) $(LFLAGS)
+	@$(COMPILER) -g $(IFLAGS) $(SRCPATH)$(FILE_C).c $(SRC) $(LFLAGS) -o checker
+	@$(COMPILER) -g $(IFLAGS) $(SRCPATH)$(FILE_PW).c $(SRC) $(LFLAGS) -o push_swap
 
 norm:
 	@echo $(RED)

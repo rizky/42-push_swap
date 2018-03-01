@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/01 15:50:01 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:01:46 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int
 	main(int ac, char **av)
 {
 	int		i;
-	char	*line;
 	t_array		a;
 	t_array		b;
 	int		temp;
@@ -33,7 +32,7 @@ int
 		i++;
 	}
 	if (ac > 1)
-	{	
+	{
 		while (i < ac)
 		{
 			temp = atoi(av[i]);
@@ -41,6 +40,5 @@ int
 			i++;
 		}
 		pf_print_stack(&a, &b);
-		}
-	}	
+	}
 }
