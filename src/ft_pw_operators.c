@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_operators.c                               :+:      :+:    :+:   */
+/*   ft_pw_operators.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/02/26 21:49:02 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/01 15:47:48 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,30 @@ int
 		i--;
 	}
 	return (1);
+}
+
+void
+	pf_print_stack(t_array *a, t_array *b)
+{
+	int i;
+
+	if (a->size > b->size)
+		i = a->size - 1;
+	else
+		i = b->size - 1;
+	while (i >= 0)
+	{
+		if (i < (int)a->size)
+			printf("%2d  ", ((int*)ARRAY_START(a))[i]);
+		else
+			printf("    ");
+		if (i < (int)b->size)
+			printf("%2d \n", ((int*)ARRAY_START(b))[i]);
+		else
+			printf("\n");
+		i--;
+	}
+	printf("--- ---\n");
+	printf("%2s  %2s\n", "a", "b");
+	printf("--------------------------------------------------\n");
 }
