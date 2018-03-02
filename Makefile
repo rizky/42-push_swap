@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
+#    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/01 16:41:05 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/02 12:35:37 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_C:=checker
 NAME_PW:=push_swap
-FILES:= ft_pw_operators
 FILE_C:= ft_checker
-FILE_PW:= ft_push_swap
+FILE_PW:= ft_push_swap 
+FILES:= ft_pw_operators ft_pw_math
 
 # ----- Libft ------
 LFTDIR:=./libft
@@ -43,24 +43,26 @@ EOC:="\033[0;0m"
 
 # ------ Auto ------
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
+SRC_PW:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILE_PW)))
+SRC_C:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILE_C)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 OBJ_C:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILE_C)))
 OBJ_PW:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILE_PW)))
 # ==================
 CCHF:=.cache_exists
 
-all: $(NAME_C) | $(NAME_PW)
+all: $(NAME_PW) $(NAME_C)
 
-$(NAME_C): $(OBJ) | $(OBJ_C)
+$(NAME_C): $(OBJ) $(OBJ_C)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_C).c -o $(NAME_C)
 	@echo $(GREEN) " - OK" $(EOC)
 
-$(NAME_PW): $(OBJ) | $(OBJ_C)
+$(NAME_PW): $(OBJ) $(OBJ_PW)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_PW).c -o $(NAME_PW)
+	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRC_PW) -o $(NAME_PW)
 	@echo $(GREEN) " - OK" $(EOC)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHF)
@@ -90,15 +92,20 @@ fclean: clean
 re: fclean
 	@$(MAKE) all
 
-test: $(NAME_C) $(NAME_PW)
+test_ch: $(NAME_C)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) -g -w $(CFLAGS) $(SRCPATH)$(FILE_C).c $(SRC) $(LFLAGS) -o checker
-	@$(COMPILER) -g -w $(CFLAGS) $(SRCPATH)$(FILE_PW).c $(SRC) $(LFLAGS) -o push_swap
+	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
+	@cat instructions.txt | ./checker -v 8 5 6 3 1 2
+
+test_pw: $(NAME_PW)
+	@echo "Files :" $(FILES)
+	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
+	@./push_swap 8 5 6 3 1 2 1 2 1 2 1 2 1 1 2 12
 
 debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) -g $(IFLAGS) $(SRCPATH)$(FILE_C).c $(SRC) $(LFLAGS) -o checker
-	@$(COMPILER) -g $(IFLAGS) $(SRCPATH)$(FILE_PW).c $(SRC) $(LFLAGS) -o push_swap
+	@$(COMPILER) -g $(IFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
+	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 
 norm:
 	@echo $(RED)
