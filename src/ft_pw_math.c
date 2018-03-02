@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 12:26:43 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:52:43 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int
 	int		max;
 
 	if (d->size == 0)
-		return (9999999);
+		return (0);
 	i = 0;
 	max = 0;
 	while (i < d->size)
@@ -66,4 +66,21 @@ int
 		i++;
 	}
 	return (total / d->size);
+}
+
+int
+	pw_is_sorted(t_array *v)
+{
+	int	i;
+
+	if (v->size == 0)
+		return (1);
+	i = v->size - 1;
+	while (i > 0)
+	{
+		if (ARRAY_DATA(v, i - 1) < ARRAY_DATA(v, i))
+			return (0);
+		i--;
+	}
+	return (1);
 }

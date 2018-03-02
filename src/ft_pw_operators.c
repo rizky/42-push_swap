@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_operators.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/01 16:39:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:45:48 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,6 @@ void
 	temp = ((int*)ARRAY_START(d))[d->size-1];
 	fta_popback(d, 1);
 	fta_insert(d, &temp, 1, 0);
-}
-
-int
-	pw_is_sorted(t_array *d)
-{
-	int	i;
-
-	if (d->size == 0)
-		return (1);
-	i = d->size - 1;
-	while (i >= 0)
-	{
-		if (((int*)ARRAY_START(d))[i - 1] < ((int*)ARRAY_START(d))[i])
-			return (0);
-		i--;
-	}
-	return (1);
 }
 
 void

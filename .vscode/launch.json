@@ -5,11 +5,23 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(lldb) Launch",
+			"name": "(lldb) Launch Push_Swap",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/push_swap",
-			"args": [8, 5, 6, 3, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 12],
+			"args": [8, 5, 6, 3, 1, 2],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "(lldb) Launch Checker",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/checker",
+			"args": [8, 5, 6, 3, 1, 2],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

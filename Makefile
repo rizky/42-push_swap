@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/02 12:35:37 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/02 13:30:04 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,9 +84,8 @@ clean:
 fclean: clean
 	@rm -f $(NAME_C)
 	@rm -f $(NAME_PW)
-	@rm -f test_me
-	@rm -rf test_me.dSYM/
-	@rm -rf a.out.dSYM/
+	@rm -rf $(NAME_C).dSYM/
+	@rm -rf $(NAME_PW).dSYM/
 	@cd $(LFTDIR) && $(MAKE) fclean
 
 re: fclean
@@ -100,7 +99,7 @@ test_ch: $(NAME_C)
 test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	@./push_swap 8 5 6 3 1 2 1 2 1 2 1 2 1 1 2 12
+	@./push_swap 8 5 6 3 1 2
 
 debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
@@ -113,4 +112,4 @@ norm:
 	@echo $(END)
 	@cd $(LFTDIR) && $(MAKE) norm
 
-.PHONY: all clean fclean re test norme
+.PHONY: all clean fclean re test norme test_ch test_pw debug
