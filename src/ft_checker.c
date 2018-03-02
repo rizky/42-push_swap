@@ -6,12 +6,11 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 13:51:49 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/02 16:36:14 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int
 	main(int ac, char **av)
@@ -86,8 +85,8 @@ int
 				pw_print_stack(&a, &b);
 		}
 		if (b.size == 0 && pw_is_sorted(&a))
-			printf("OK\n");
+			ft_printfln("OK");
 		else
-			printf("KO\n");
+			ft_printfln("KO");
 	}
 }

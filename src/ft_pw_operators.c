@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 13:45:48 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/02 16:37:22 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ void
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			printf("%2d  ", ((int*)ARRAY_START(a))[i]);
+			ft_printf("%2d  ", ((int*)ARRAY_START(a))[i]);
 		else
-			printf("    ");
+			ft_printf("    ");
 		if (i < (int)b->size)
-			printf("%2d \n", ((int*)ARRAY_START(b))[i]);
+			ft_printfln("%2d ", ((int*)ARRAY_START(b))[i]);
 		else
-			printf("\n");
+			ft_printf("\n");
 		i--;
 	}
-	printf("--- ---\n");
-	printf("%2s  %2s\n", "a", "b");
-	printf("--------------------------------------------------\n");
+	ft_printfln("--- ---");
+	ft_printfln("%2s  %2s", "a", "b");
+	ft_printfln("--------------------------------------------------");
 }
