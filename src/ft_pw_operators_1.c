@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 22:42:03 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 00:14:23 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,16 @@ void
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%*Q%*Q\t", ((int*)ARRAY_START(a))[i], '-', maxa - ((int*)ARRAY_START(a))[i], ' ');
+			ft_printf("%3d %*Q%*Q\t", ((int*)ARRAY_START(a))[i], ((int*)ARRAY_START(a))[i], '-', maxa - ((int*)ARRAY_START(a))[i], ' ');
 		else
-			ft_printf("%*Q\t", maxa, ' ');
+			ft_printf("%*Q\t", maxa + 4, ' ');
 		if (i < (int)b->size)
-			ft_printfln("%*Q%*Q", ((int*)ARRAY_START(b))[i], '-', maxb - ((int*)ARRAY_START(b))[i], ' ');
+			ft_printfln("%3d %*Q%*Q", ((int*)ARRAY_START(b))[i], ((int*)ARRAY_START(b))[i], '-', maxb - ((int*)ARRAY_START(b))[i], ' ');
 		else
 			ft_printf("\n");
 		i--;
 	}
-	ft_printfln("%*Q\t%*Q", maxa, '+', maxb, '+');
-	ft_printfln("%*s%*Q\t%*s", maxa / 2 + 1, "a",
-				maxa - (maxa / 2 + 1), ' ' , maxb / 2 + 1, "b");
-	ft_printfln("%50Q",'-');
+	ft_printfln("%*Q\t%*Q", maxa + 4, '+', maxb + 4, '+');
+	ft_printfln("%*s%*Q\t%*s", (maxa + 4) / 2 + 1, "a",
+				(maxa + 4) - ((maxa + 4) / 2 + 1), ' ' , (maxb + 4) / 2 + 1, "b");
 }

@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 22:28:13 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 00:40:54 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,22 +128,22 @@ void
 	int	i;
 	int j;
 
-	i = 0;
-	while (i < (int)v->size)
+	i = (int)v->size - 1;
+	while (i >= 0)
 	{
 		j = 0;
-		while (j < (int)dv->size)
+		while (j < (int)dv->size - 1)
 		{
-			if (ARRAY_DATA(v, i) == ARRAY_DATA(dv, j) &&
-				ARRAY_DATA(dv, j) != 999999)
+			if (ARRAY_DATA(v, i) == ARRAY_DATA(dv, (int)dv->size - 1 - j) &&
+				ARRAY_DATA(dv, (int)dv->size - 1 - j) != 999999)
 			{
-				ARRAY_DATA(dv, j) = 999999;
+				ARRAY_DATA(dv, (int)dv->size - 1 - j) = 999999;
 				break ;
 			}
 			j++;
 		}
-		ARRAY_DATA(v, i) = j;
-		i++;
+		ARRAY_DATA(v, i) = j + 1;
+		i--;
 	}
 }
 
