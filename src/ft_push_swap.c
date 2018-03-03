@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 13:32:32 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 14:43:38 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,7 @@ void
 }
 
 void
-	pw_split(t_array *a, t_array *b)
-{
-	int avg;
-	int	i;
-
-	avg = pw_get_avg(a);
-	i = a->size - 1;
-	while (i >= 0)
-	{
-		if (avg >= ARRAY_DATA(a, a->size - 1))
-		{
-			pw_push(a, b);
-			ft_printfln("pb");
-		}
-		else
-		{
-			pw_rev_rotate(a);
-			ft_printfln("rra");
-		}
-		i--;
-	}
-}
-
-void
-	pw_rank(t_array *v, t_array *dv)
+	pw_sortdata_bubble(t_array *dv)
 {
 	int	temp;
 	int	i;
@@ -69,23 +45,50 @@ void
 		}
 		i++;
 	}
-	i = 0;
-	while (i < (int)v->size)
+}
+
+int
+	pw_partition(t_array *v, int left, int right, int pivot)
+{
+	int temp;
+
+	while (left <= right)
 	{
-		j = 0;
-		while (j < (int)dv->size)
+		while (ARRAY_DATA(v, left) < pivot)
+			left++;
+		while (ARRAY_DATA(v, right) > pivot)
+			right--;
+		if (left <= right)
 		{
-			if (ARRAY_DATA(v, i) == ARRAY_DATA(dv, j) &&
-				ARRAY_DATA(dv, j) != 999999)
-			{
-				ARRAY_DATA(dv, j) = 999999;
-				break ;
-			}
-			j++;
+			temp = ARRAY_DATA(v, right);
+			ARRAY_DATA(v, right) = ARRAY_DATA(v, left);
+			ARRAY_DATA(v, left) = temp;
+			left++;
+			right--;
+			pw_print_stack(v, v);
 		}
-		ARRAY_DATA(v, i) = j;
-		i++;
 	}
+	return left;
+}
+
+void
+	pw_quicksort(t_array *v, int left, int right)
+{
+	int pivot;
+	int index;
+
+	if (left >= right)
+		return ;
+	pivot = ARRAY_DATA(v, (right + left) / 2);
+	index = pw_partition(v, left, right, pivot);
+	pw_quicksort(v, left, index - 1);
+	pw_quicksort(v, index, right);
+}
+
+void
+	pw_sortdata_quick(t_array *v)
+{
+	pw_quicksort(v, 0, (int)v->size - 1);
 }
 
 int
@@ -96,18 +99,12 @@ int
 	t_array		da;
 	t_array		b;
 	int			temp;
-	int			is_verbose;
 
 	a = NEW_ARRAY(int);
 	da = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
+
 	i = 1;
-	is_verbose = 0;
-	if (ft_strcmp(av[1], "-v") == 0)
-	{
-		is_verbose = 1;
-		i++;
-	}
 	if (ac > 1)
 	{
 		while (i < ac)
@@ -117,12 +114,12 @@ int
 			fta_append(&da, &temp, 1);
 			i++;
 		}
-		// pw_print_stack(&a, &b);
-		pw_rank(&a, &da);
-		// pw_print_stack(&a, &b);
+		pw_print_stack(&a, &b);
+		pw_sortdata_quick(&da);
+		pw_print_stack(&a, &da);
 		// pw_split(&a, &b);
 		// pw_print_stack(&a, &b);
-		pw_bubblesort(&a);
+		// pw_bubblesort(&a);
 		// pw_print_stack(&a, &b);
 		// pw_bubblesort_desc(&b);
 		// pw_print_stack(&a, &b);
