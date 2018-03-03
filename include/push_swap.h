@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 14:51:02 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 13:33:21 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ int			pw_get_min(t_array *d);
 int			pw_get_max(t_array *d);
 int			pw_get_avg(t_array *d);
 
+void		pw_bubblesort(t_array *v);
+void		pw_bubblesort_desc(t_array *v);
 #endif

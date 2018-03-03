@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 16:37:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 13:49:35 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void
 	pw_print_stack(t_array *a, t_array *b)
 {
 	int i;
+	int	sp;
 
+	sp = 5;
 	if (a->size > b->size)
 		i = a->size - 1;
 	else
@@ -72,16 +74,17 @@ void
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%2d  ", ((int*)ARRAY_START(a))[i]);
+			ft_printf("%*d ", sp, ((int*)ARRAY_START(a))[i]);
 		else
-			ft_printf("    ");
+			ft_printf("%*Q ", sp, ' ');
 		if (i < (int)b->size)
-			ft_printfln("%2d ", ((int*)ARRAY_START(b))[i]);
+			ft_printfln("%*d ", sp, ((int*)ARRAY_START(b))[i]);
 		else
 			ft_printf("\n");
 		i--;
 	}
-	ft_printfln("--- ---");
-	ft_printfln("%2s  %2s", "a", "b");
-	ft_printfln("--------------------------------------------------");
+	ft_printfln("%*Q %*Q", sp, '-', sp, '-');
+	ft_printfln("%*s%*Q %*s", sp / 2 + 1, "a",
+				sp - (sp / 2 + 1), ' ' , sp / 2 + 1, "b");
+	ft_printfln("%50Q",'-');
 }
