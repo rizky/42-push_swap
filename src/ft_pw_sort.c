@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 14:39:31 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 14:49:35 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,31 @@ void
 			j++;
 		}
 		ARRAY_DATA(v, i) = j;
+		i++;
+	}
+}
+
+void
+	pw_sortdata_bubble(t_array *dv)
+{
+	int	temp;
+	int	i;
+	int j;
+
+	i = 0;
+	while (i < (int)dv->size - 1)
+	{
+		j = i + 1;
+		while (j < (int)dv->size)
+		{
+			if (ARRAY_DATA(dv, i) > ARRAY_DATA(dv, j))
+				{
+					temp  = ARRAY_DATA(dv, j);
+					ARRAY_DATA(dv, j) = ARRAY_DATA(dv, i);
+					ARRAY_DATA(dv, i) = temp;
+				}
+			j++;
+		}
 		i++;
 	}
 }
