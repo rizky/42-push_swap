@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 13:59:13 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 22:42:03 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,36 @@ void
 	ft_printfln("%*Q %*Q", sp, '-', sp, '-');
 	ft_printfln("%*s%*Q %*s", sp / 2 + 1, "a",
 				sp - (sp / 2 + 1), ' ' , sp / 2 + 1, "b");
+	ft_printfln("%50Q",'-');
+}
+
+void
+	pw_print_stripe(t_array *a, t_array *b)
+{
+	int i;
+	int	maxa;
+	int	maxb;
+
+	maxa = pw_get_max(a);
+	maxb = pw_get_max(b);
+	if (a->size > b->size)
+		i = a->size - 1;
+	else
+		i = b->size - 1;
+	while (i >= 0)
+	{
+		if (i < (int)a->size)
+			ft_printf("%*Q%*Q\t", ((int*)ARRAY_START(a))[i], '-', maxa - ((int*)ARRAY_START(a))[i], ' ');
+		else
+			ft_printf("%*Q\t", maxa, ' ');
+		if (i < (int)b->size)
+			ft_printfln("%*Q%*Q", ((int*)ARRAY_START(b))[i], '-', maxb - ((int*)ARRAY_START(b))[i], ' ');
+		else
+			ft_printf("\n");
+		i--;
+	}
+	ft_printfln("%*Q\t%*Q", maxa, '+', maxb, '+');
+	ft_printfln("%*s%*Q\t%*s", maxa / 2 + 1, "a",
+				maxa - (maxa / 2 + 1), ' ' , maxb / 2 + 1, "b");
 	ft_printfln("%50Q",'-');
 }

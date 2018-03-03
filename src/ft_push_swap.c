@@ -6,74 +6,47 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 21:51:11 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 23:31:35 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void
-	pw_merge(t_array *a, t_array *b)
+	pw_split_min(t_array *a, t_array *b, int size)
 {
-	while (b->size > 0)
+	int avg;
+	int	i;
+
+	avg = pw_get_avg(a);
+	i = 0;
+	while (i < size)
 	{
-		pw_push(b, a);
-		ft_printfln("pa");
+		if (avg >= ARRAY_DATA(a, a->size - 1))
+			pw_push(a, b);
+		else
+			pw_rev_rotate(a);
+		i++;
 	}
 }
 
-int
-	pw_partition_array(t_array *v, int left, int right, int pivot)
+void
+	pw_split_max(t_array *a, t_array *b, int size)
 {
-	int temp;
+	int avg;
+	int	i;
 
-	while (left <= right)
+	avg = pw_get_avg(a);
+	i = 0;
+	while (i < size)
 	{
-		while (ARRAY_DATA(v, left) > pivot)
-			left++;
-		while (ARRAY_DATA(v, right) < pivot)
-			right--;
-		if (left <= right)
-		{
-			temp = ARRAY_DATA(v, right);
-			ARRAY_DATA(v, right) = ARRAY_DATA(v, left);
-			ARRAY_DATA(v, left) = temp;
-			left++;
-			right--;
-			ft_printfln("pb");
-			ft_printfln("rra");
-			ft_printfln("pa");
-			ft_printfln("rrb");
-		}
+		if (avg <= ARRAY_DATA(a, a->size - 1))
+			pw_push(a, b);
+		else
+			pw_rev_rotate(a);
+		i++;
 	}
-	return left;
 }
-
-void
-	pw_quicksort_array(t_array *v, int left, int right)
-{
-	int pivot;
-	int index;
-
-	if (left >= right)
-		return ;
-	pivot = ARRAY_DATA(v, (right + left) / 2);
-	index = pw_partition_array(v, left, right, pivot);
-	pw_quicksort_array(v, left, index - 1);
-	pw_quicksort_array(v, index, right);
-}
-
-void
-	pw_sortdata_quick(t_array *v)
-{
-	pw_quicksort_array(v, 0, (int)v->size - 1);
-}
-
-// void
-// 	pw_sort_quick(t_array *a, t_array *b)
-// {
-// 	pw_quicksort(a, b);
-// }
 
 int
 	main(int ac, char **av)
@@ -98,16 +71,58 @@ int
 			fta_append(&da, &temp, 1);
 			i++;
 		}
-		// pw_print_stack(&a, &b);
 		pw_sortdata_quick(&da);
-		// pw_print_stack(&a, &da);
-		// pw_split(&a, &b);
-		// pw_print_stack(&a, &b);
-		// pw_bubblesort(&a);
-		// pw_print_stack(&a, &b);
-		// pw_bubblesort_desc(&b);
-		// pw_print_stack(&a, &b);
-		// pw_merge(&a, &b);
-		// pw_print_stack(&a, &b);
+		pw_rank(&a, &da);
+		pw_print_stripe(&a, &b);
+		pw_split_min(&a, &b, a.size);
+		pw_print_stripe(&a, &b);
+		while (!pw_is_sorted(&a) && b.size > 0)
+		{
+			while (b.size > 0)
+			{
+				pw_split_max(&b, &a, b.size);
+				pw_print_stripe(&a, &b);
+			}
+			pw_print_stripe(&a, &b);
+			pw_rev_rotate(&a);
+			while (((int*)a.data)[a.size - 1] > ((int*)a.data)[0])
+				pw_rev_rotate(&a);
+			pw_print_stripe(&a, &b);
+			while (((int*)a.data)[a.size - 1] < ((int*)a.data)[0]
+				&& ((int*)a.data)[a.size - 1] != pw_get_min(&a))
+				pw_push(&a, &b);
+			pw_print_stripe(&a, &b);
+			while (b.size > 0 && ((int*)a.data)[0] > ((int*)b.data)[0])
+				pw_rotate(&a);
+			pw_print_stripe(&a, &b);
+		}
+		// while (((int*)a.data)[0] > ((int*)b.data)[0])
+		// 	pw_rotate(&a);
+		// pw_print_stripe(&a, &b);
+		// while (b.size > 0)
+		// {
+		// 	pw_split_max(&b, &a, b.size);
+		// 	pw_print_stripe(&a, &b);
+		// }
+		// pw_print_stripe(&a, &b);
+		// pw_rev_rotate(&a);
+		// while (((int*)a.data)[a.size - 1] > ((int*)a.data)[0])
+		// 	pw_rev_rotate(&a);
+		// pw_print_stripe(&a, &b);
+		// while (((int*)a.data)[a.size - 1] < ((int*)a.data)[0]
+		// 	&& ((int*)a.data)[a.size - 1] != pw_get_min(&a))
+		// 	pw_push(&a, &b);
+		// pw_print_stripe(&a, &b);
+		// while (((int*)a.data)[0] > ((int*)b.data)[0])
+		// 	pw_rotate(&a);
+		// pw_print_stripe(&a, &b);
+		// while (b.size > 0)
+		// {
+		// 	pw_split_max(&b, &a, b.size);
+		// 	pw_print_stripe(&a, &b);
+		// }
+		// while (((int*)a.data)[a.size - 1] > ((int*)a.data)[0])
+		// 	pw_rev_rotate(&a);
+		// pw_print_stripe(&a, &b);
 	}
 }

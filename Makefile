@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/03 14:00:00 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/03 22:46:08 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ test_ch: $(NAME_C)
 test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	@./push_swap 8 5 6 3 1 2
+	@./push_swap 1 3 2 5 4 7 6 9 8
 
 debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)

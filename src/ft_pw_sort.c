@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/03 14:49:35 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 22:28:13 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,4 +170,48 @@ void
 		}
 		i++;
 	}
+}
+
+
+int
+	pw_partition_array(t_array *v, int left, int right, int pivot)
+{
+	int temp;
+
+	while (left <= right)
+	{
+		while (ARRAY_DATA(v, left) > pivot)
+			left++;
+		while (ARRAY_DATA(v, right) < pivot)
+			right--;
+		if (left <= right)
+		{
+			temp = ARRAY_DATA(v, right);
+			ARRAY_DATA(v, right) = ARRAY_DATA(v, left);
+			ARRAY_DATA(v, left) = temp;
+			left++;
+			right--;
+		}
+	}
+	return left;
+}
+
+void
+	pw_quicksort_array(t_array *v, int left, int right)
+{
+	int pivot;
+	int index;
+
+	if (left >= right)
+		return ;
+	pivot = ARRAY_DATA(v, (right + left) / 2);
+	index = pw_partition_array(v, left, right, pivot);
+	pw_quicksort_array(v, left, index - 1);
+	pw_quicksort_array(v, index, right);
+}
+
+void
+	pw_sortdata_quick(t_array *v)
+{
+	pw_quicksort_array(v, 0, (int)v->size - 1);
 }
