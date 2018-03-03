@@ -14,3 +14,6 @@ Split Balance
 
 GIT  
 git pull && git submodule init && git submodule update && git submodule status
+
+Quick Sort
+https://www.youtube.com/watch?v=SLauY6PpjW4

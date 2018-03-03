@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/02 16:36:19 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/03 04:32:33 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void
 	while (b->size > 0)
 	{
 		pw_push(b, a);
+		ft_printfln("pa");
 	}
 }
 
@@ -25,16 +26,23 @@ void
 	pw_split(t_array *a, t_array *b)
 {
 	int avg;
+	int	i;
 
 	avg = pw_get_avg(a);
-	while (pw_get_min(a) < avg)
+	i = a->size - 1;
+	while (i >= 0)
 	{
-		if (ARRAY_DATA(a, a->size - 2) < ARRAY_DATA(a, a->size - 1))
-			pw_swap(a);
 		if (avg >= ARRAY_DATA(a, a->size - 1))
+		{
 			pw_push(a, b);
+			ft_printfln("pb");
+		}
 		else
+		{
 			pw_rev_rotate(a);
+			ft_printfln("rra");
+		}
+		i--;
 	}
 }
 
@@ -51,7 +59,7 @@ void
 		j = i + 1;
 		while (j < (int)dv->size)
 		{
-			if (ARRAY_DATA(dv, i) < ARRAY_DATA(dv, j))
+			if (ARRAY_DATA(dv, i) > ARRAY_DATA(dv, j))
 				{
 					temp  = ARRAY_DATA(dv, j);
 					ARRAY_DATA(dv, j) = ARRAY_DATA(dv, i);
@@ -62,18 +70,26 @@ void
 		i++;
 	}
 	i = 0;
-	while (i < (int)dv->size)
+	while (i < (int)v->size)
 	{
 		j = 0;
-		while (ARRAY_DATA(dv, i) != ARRAY_DATA(v, j))
+		while (j < (int)dv->size)
+		{
+			if (ARRAY_DATA(v, i) == ARRAY_DATA(dv, j) &&
+				ARRAY_DATA(dv, j) != 999999)
+			{
+				ARRAY_DATA(dv, j) = 999999;
+				break ;
+			}
 			j++;
-		ARRAY_DATA(v, j) = i;
+		}
+		ARRAY_DATA(v, i) = j;
 		i++;
 	}
 }
 
 void
-	pw_sort(t_array *v)
+	pw_bubblesort(t_array *v)
 {
 	int	i;
 
@@ -82,28 +98,53 @@ void
 	i = v->size - 1;
 	while (i > 0)
 	{
-		if (ARRAY_DATA(v, v->size - 2) == pw_get_min(v) &&
-			ARRAY_DATA(v, v->size - 1) == pw_get_max(v))
-			pw_rev_rotate(v);
+		if (ARRAY_DATA(v, 1) == pw_get_max(v) &&
+			ARRAY_DATA(v, 0) == pw_get_min(v))
+			{
+				ft_printfln("ra");
+				pw_rotate(v);
+			}
 		if (ARRAY_DATA(v, i - 1) < ARRAY_DATA(v, i))
 		{
-			while (i < (int)v->size - 1)
+			if (i > (int)v->size / 2)
 			{
-				pw_rev_rotate(v);
-				i++;
+				while (i < (int)v->size - 1)
+				{
+					ft_printfln("rra");
+					pw_rev_rotate(v);
+					i++;
+				}
 			}
-			if (ARRAY_DATA(v, v->size - 2) == pw_get_min(v) &&
-			ARRAY_DATA(v, v->size - 1) == pw_get_max(v))
-				pw_rev_rotate(v);
 			else
+			{
+				while (i > 0)
+				{
+					ft_printfln("ra");
+					pw_rotate(v);
+					i--;
+				}
+			}
+			ft_printfln("sa");
+			pw_swap(v);
+			while (ARRAY_DATA(v, 0) > ARRAY_DATA(v, v->size - 1))
+			{
+				if (ARRAY_DATA(v, v->size - 1) == pw_get_min(v) &&
+					ARRAY_DATA(v, 0) == pw_get_max(v))
+					break ;
+				ft_printfln("ra");
+				pw_rotate(v);
+				ft_printfln("sa");
 				pw_swap(v);
+			}
+			i = v->size - 1;
 		}
-		i--;
+		else
+			i--;
 	}
 }
 
 void
-	pw_sort_desc(t_array *v)
+	pw_bubblesort_desc(t_array *v)
 {
 	int	i;
 
@@ -112,23 +153,48 @@ void
 	i = v->size - 1;
 	while (i > 0)
 	{
-		if (ARRAY_DATA(v, v->size - 1) == pw_get_min(v) &&
-			ARRAY_DATA(v, v->size - 2) == pw_get_max(v))
-			pw_rev_rotate(v);
+		if (ARRAY_DATA(v, 1) == pw_get_min(v) &&
+			ARRAY_DATA(v, 0) == pw_get_max(v))
+			{
+				ft_printfln("rb");
+				pw_rotate(v);
+			}
 		if (ARRAY_DATA(v, i - 1) > ARRAY_DATA(v, i))
 		{
-			while (i < (int)v->size - 1)
+			if (i > (int)v->size / 2)
 			{
-				pw_rev_rotate(v);
-				i++;
+				while (i < (int)v->size - 1)
+				{
+					ft_printfln("rrb");
+					pw_rev_rotate(v);
+					i++;
+				}
 			}
-			if (ARRAY_DATA(v, v->size - 1) == pw_get_min(v) &&
-			ARRAY_DATA(v, v->size - 2) == pw_get_max(v))
-				pw_rev_rotate(v);
 			else
+			{
+				while (i > 0)
+				{
+					ft_printfln("rb");
+					pw_rotate(v);
+					i--;
+				}
+			}
+			ft_printfln("sb");
+			pw_swap(v);
+			while (ARRAY_DATA(v, 0) < ARRAY_DATA(v, v->size - 1))
+			{
+				if (ARRAY_DATA(v, v->size - 1) == pw_get_max(v) &&
+					ARRAY_DATA(v, 0) == pw_get_min(v))
+					break ;
+				ft_printfln("rb");
+				pw_rotate(v);
+				ft_printfln("sb");
 				pw_swap(v);
+			}
+			i = v->size - 1;
 		}
-		i--;
+		else
+			i--;
 	}
 }
 
@@ -161,15 +227,16 @@ int
 			fta_append(&da, &temp, 1);
 			i++;
 		}
+		// pw_print_stack(&a, &b);
 		pw_rank(&a, &da);
-		pw_print_stack(&a, &b);
-		pw_split(&a, &b);
-		pw_print_stack(&a, &b);
-		pw_sort(&a);
-		pw_print_stack(&a, &b);
-		pw_sort_desc(&b);
-		pw_print_stack(&a, &b);
-		pw_merge(&a, &b);
-		pw_print_stack(&a, &b);
+		// pw_print_stack(&a, &b);
+		// pw_split(&a, &b);
+		// pw_print_stack(&a, &b);
+		pw_bubblesort(&a);
+		// pw_print_stack(&a, &b);
+		// pw_bubblesort_desc(&b);
+		// pw_print_stack(&a, &b);
+		// pw_merge(&a, &b);
+		// pw_print_stack(&a, &b);
 	}
 }
