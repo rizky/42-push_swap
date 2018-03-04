@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/03 22:46:08 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/04 02:15:09 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,9 +95,9 @@ test: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	@ ./push_swap 8 5 6 3 1 2
-	@ ./push_swap 8 5 6 3 1 2 |  sed -n 'p;$='
-	./push_swap 8 5 6 3 1 2 | ./checker -v 8 5 6 3 1 2
+	@ ./push_swap $(ARG)
+	@ ./push_swap $(ARG) |  wc -l
+	./push_swap $(ARG) | ./checker -v $(ARG)
 
 test_ch: $(NAME_C)
 	@echo "Files :" $(FILES)
@@ -108,6 +108,10 @@ test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 	@./push_swap 1 3 2 5 4 7 6 9 8
+
+debug_pw: $(NAME_PW)
+	@echo "Files :" $(FILES)
+	@$(COMPILER) -g -w $(CFLAGS) src/ft_push_swap-debug.c $(SRC) $(LFLAGS) -o push_swap
 
 debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
