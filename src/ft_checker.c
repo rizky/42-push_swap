@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 01:44:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 18:58:35 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int
 			fta_append(&a, &temp, 1);
 			i++;
 		}
+		i = 0;
 		while (get_next_line(0, &line))
 		{
 			if (is_verbose)
@@ -83,9 +84,10 @@ int
 			}
 			if (is_verbose)
 				pw_print_stripe(&a, &b);
+			i++;
 		}
 		if (b.size == 0 && pw_is_sorted(&a))
-			ft_printfln("OK");
+			ft_printfln("OK (%d)", i);
 		else
 			ft_printfln("KO");
 	}

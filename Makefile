@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
+#    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/04 02:35:25 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/04 18:17:04 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,8 @@ test_ch: $(NAME_C)
 test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	@./push_swap 1 3 2 5 4 7 6 9 8
+	@ ./push_swap $(ARG)
+	@ ./push_swap $(ARG) |  wc -l
 
 debug_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)

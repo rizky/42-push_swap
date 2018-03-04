@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 02:59:43 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 19:40:08 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,31 @@ void
 	i = 0;
 	while (i < size)
 	{
-		if (pw_get_avg(a, a->size) <= ARRAY_DATA(a, a->size - 1))
+		if (a->size < 7)
 		{
-			ft_printfln("pa");
-			pw_push(a, b);
+			if (pw_get_max(a) == ARRAY_DATA(a, a->size - 1))
+			{
+				ft_printfln("pa");
+				pw_push(a, b);
+			}
+			else
+			{
+				ft_printfln("rrb");
+				pw_rev_rotate(a);
+			}
 		}
 		else
 		{
-			ft_printfln("rrb");
-			pw_rev_rotate(a);
+			if (pw_get_avg(a, a->size) <= ARRAY_DATA(a, a->size - 1))
+			{
+				ft_printfln("pa");
+				pw_push(a, b);
+			}
+			else
+			{
+				ft_printfln("rrb");
+				pw_rev_rotate(a);
+			}
 		}
 		i++;
 	}
@@ -100,8 +116,6 @@ void
 	ft_push_swap_2(t_array a, t_array b)
 {
 	pw_split_min(&a, &b, a.size);
-	int counter = 0;
-	int counter2 = 0;
 	while (!pw_is_sorted(&a) || b.size > 0)
 	{
 		while (b.size > 0)
@@ -110,22 +124,20 @@ void
 			break ;
 		if (((int*)a.data)[a.size - 1] == pw_get_min(&a))
 		{
-			counter++;
-			pw_rev_rotate(&a);
 			ft_printfln("rra");
+			pw_rev_rotate(&a);
 		}
 		while (((int*)a.data)[a.size - 1] == ((int*)a.data)[0] + 1)
 		{
-			counter++;
-			pw_rev_rotate(&a);
 			ft_printfln("rra");
+			pw_rev_rotate(&a);
 		}
-		counter2 = pw_split_min(&a, &b, a.size - counter);
-		while (counter2 > 0)
+		if (pw_is_sorted(&a))
+			break ;
+		while (((int*)a.data)[a.size - 1] != pw_get_min(&a))
 		{
-			pw_rotate(&a);
-			counter2--;
-			ft_printfln("ra");
+			ft_printfln("pb");
+			pw_push(&a, &b);
 		}
 	}
 }
@@ -133,40 +145,32 @@ void
 void
 	ft_push_swap_3(t_array a, t_array b)
 {
-	pw_print_stripe(&a, &b);
 	pw_split_min(&a, &b, a.size);
-	ft_printfln("Split Min");
-	pw_print_stripe(&a, &b);
-	int counter = 0;
-	int counter2 = 0;
 	while (!pw_is_sorted(&a) || b.size > 0)
 	{
 		while (b.size > 0)
 			pw_split_max(&b, &a, b.size);
-		ft_printfln("Split Max");
-		pw_print_stripe(&a, &b);
+		if (pw_is_sorted(&a))
+			break ;
 		if (((int*)a.data)[a.size - 1] == pw_get_min(&a))
 		{
-			counter++;
+			ft_printfln("rra");
 			pw_rev_rotate(&a);
 		}
 		while (((int*)a.data)[a.size - 1] == ((int*)a.data)[0] + 1)
 		{
-			counter++;
+			ft_printfln("rra");
 			pw_rev_rotate(&a);
 		}
-		ft_printfln("Push Front Min");
-		pw_print_stripe(&a, &b);
-		counter2 = pw_split_min(&a, &b, a.size - counter);
-		ft_printfln("Push To B");
-		pw_print_stripe(&a, &b);
-		while (counter2 > 0)
+		if (pw_is_sorted(&a))
+			break ;
+		while (((int*)a.data)[a.size - 1] != ((int*)a.data)[0] + 1)
 		{
-			pw_rotate(&a);
-			counter2--;
+			ft_printfln("pb");
+			pw_push(&a, &b);
 		}
-		ft_printfln("Rotate for Min in B");
-		pw_print_stripe(&a, &b);
+		ft_printfln("rra");
+		pw_rev_rotate(&a);
 	}
 }
 
@@ -195,6 +199,6 @@ int
 		}
 		pw_sortdata_quick(&da);
 		pw_rank(&a, &da);
-		ft_push_swap_2(a, b);
+		ft_push_swap_3(a, b);
 	}
 }

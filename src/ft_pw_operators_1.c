@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_operators_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 00:14:23 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 19:19:31 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,13 @@ void
 		i = a->size - 1;
 	else
 		i = b->size - 1;
+	usleep(150000);
+	system("clear");
+	i = a->size + b->size + 1;
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%3d %*Q%*Q\t", ((int*)ARRAY_START(a))[i], ((int*)ARRAY_START(a))[i], '-', maxa - ((int*)ARRAY_START(a))[i], ' ');
+			ft_printf("%3d %*Q%*Q\t", ((int*)ARRAY_START(a))[i],((int*)ARRAY_START(a))[i], '-', maxa - ((int*)ARRAY_START(a))[i], ' ');
 		else
 			ft_printf("%*Q\t", maxa + 4, ' ');
 		if (i < (int)b->size)
