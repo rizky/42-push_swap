@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 19:19:31 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 22:20:40 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void
 		i = a->size - 1;
 	else
 		i = b->size - 1;
-	usleep(150000);
+	usleep(120000);
 	system("clear");
 	i = a->size + b->size + 1;
 	while (i >= 0)

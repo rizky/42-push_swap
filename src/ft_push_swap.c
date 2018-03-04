@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 19:40:08 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 21:55:55 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,30 @@ void
 	}
 }
 
+int
+	pw_get_nmin(t_array *d, int n)
+{
+	size_t	i;
+	int		min;
+
+	if (d->size == 0)
+		return (0);
+	i = d->size - 1;
+	min = ARRAY_DATA(d, i);
+	while (i > d->size - n)
+	{
+		if (min > ARRAY_DATA(d, i))
+			min = ARRAY_DATA(d, i);
+		i--;
+	}
+	return (min);
+}
+
 void
 	ft_push_swap_2(t_array a, t_array b)
 {
+	int counter;
+	counter = 0;
 	pw_split_min(&a, &b, a.size);
 	while (!pw_is_sorted(&a) || b.size > 0)
 	{
@@ -126,18 +147,29 @@ void
 		{
 			ft_printfln("rra");
 			pw_rev_rotate(&a);
+			counter++;
 		}
 		while (((int*)a.data)[a.size - 1] == ((int*)a.data)[0] + 1)
 		{
 			ft_printfln("rra");
 			pw_rev_rotate(&a);
+			counter++;
 		}
 		if (pw_is_sorted(&a))
 			break ;
 		while (((int*)a.data)[a.size - 1] != pw_get_min(&a))
 		{
-			ft_printfln("pb");
-			pw_push(&a, &b);
+			if (((int*)a.data)[a.size - 1] == ((int*)a.data)[0] + 1)
+			{
+				ft_printfln("rra");
+				pw_rev_rotate(&a);
+				counter++;
+			}
+			else
+			{
+				ft_printfln("pb");
+				pw_push(&a, &b);
+			}
 		}
 	}
 }
