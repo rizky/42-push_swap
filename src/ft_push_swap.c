@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 02:12:32 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/04 02:59:43 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ int
 void
 	pw_split_max(t_array *a, t_array *b, int size)
 {
-	int avg;
 	int	i;
 
-	avg = pw_get_avg(a, a->size);
 	i = 0;
 	while (i < size)
 	{
-		if (avg <= ARRAY_DATA(a, a->size - 1))
+		if (pw_get_avg(a, a->size) <= ARRAY_DATA(a, a->size - 1))
 		{
 			ft_printfln("pa");
 			pw_push(a, b);
@@ -108,6 +106,8 @@ void
 	{
 		while (b.size > 0)
 			pw_split_max(&b, &a, b.size);
+		if (pw_is_sorted(&a))
+			break ;
 		if (((int*)a.data)[a.size - 1] == pw_get_min(&a))
 		{
 			counter++;
@@ -188,13 +188,13 @@ int
 	{
 		while (i < ac)
 		{
-			temp = atoi(av[i]);
+			temp = ft_atoi(av[i]);
 			fta_append(&a, &temp, 1);
 			fta_append(&da, &temp, 1);
 			i++;
 		}
 		pw_sortdata_quick(&da);
 		pw_rank(&a, &da);
-		ft_push_swap_1(a, b);
+		ft_push_swap_2(a, b);
 	}
 }
