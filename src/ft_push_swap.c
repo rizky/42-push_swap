@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 21:55:55 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:10:10 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,166 @@ void
 	}
 }
 
+void
+	pw_split_mt_avg_verbose(t_array *a, t_array *b)
+{
+	int avg;
+	int i;
+	int size;
+	int max;
+	static int depth = 0;
+
+	size = b->size;
+	avg = pw_get_avg(b, b->size);
+	max = pw_get_max(b);
+	depth++;
+	ft_printfln("%d - Split avg(%d) max(%d)", depth, avg, max);
+	i = 0;
+	while (i < size)
+	{
+		if (avg <= ARRAY_DATA(b, b->size - 1))
+			pw_push(b, a);
+		else
+			pw_rev_rotate(b);
+		i++;
+		pw_print_stripe(a, b);
+		ft_printfln("%d - Split by avg: (%d)", depth, avg);
+	}
+	if (pw_is_sorted(a))
+		return ;
+	if (((int*)a->data)[a->size - 1] == 1)
+	{
+		pw_rev_rotate(a);
+		pw_print_stripe(a, b);
+		ft_printfln("%d - First Push", depth);
+	}
+	while (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
+	{
+		pw_rev_rotate(a);
+		pw_print_stripe(a, b);
+		ft_printfln("%d - Sorted avg(%d) max(%d)", depth, avg, max);
+	}
+	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1 || pw_get_min(b) == 1)
+		pw_split_mt_avg_verbose(a, b);
+	while (ARRAY_DATA(a, a->size - 1) <= avg && ARRAY_DATA(a, a->size - 1) != 1)
+	{
+		pw_push(a, b);
+		pw_print_stripe(a, b);
+		ft_printfln("%d - Backtrack Avg: (%d)", depth, avg);
+	}
+	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
+		pw_split_mt_avg_verbose(a, b);
+	while (ARRAY_DATA(b, b->size - 1) <= max && ARRAY_DATA(a, a->size - 1) != 1)
+	{
+		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
+			pw_rev_rotate(a);
+		else
+			pw_push(a, b);
+		pw_print_stripe(a, b);
+		ft_printfln("%d - Backtrack Max: (%d)", depth, max);
+	}
+	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
+		pw_split_mt_avg_verbose(a, b);
+	depth--;
+}
+
+void
+	ft_push_swap_4_verbose(t_array a, t_array b)
+{
+	while (a.size > 0)
+	{
+		pw_push(&a, &b);
+		pw_print_stripe(&a, &b);
+	}
+	pw_split_mt_avg_verbose(&a, &b);
+	ft_printfln("Finished");
+}
+
+void
+	pw_split_mt_avg(t_array *a, t_array *b)
+{
+	int avg;
+	int i;
+	int size;
+	int max;
+
+	if (b->size == 0)
+		return ;
+	avg = pw_get_avg(b, b->size);
+	max = pw_get_max(b);
+	i = 0;
+	size = b->size;
+	while (i < size)
+	{
+		if (b->size < 7)
+		{
+			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
+			{
+				pw_push(b, a);
+				ft_printfln("pa");
+			}
+			else
+			{
+				pw_rev_rotate(b);
+				ft_printfln("rrb");
+			}
+		}
+		else
+		{
+			if (avg <= ARRAY_DATA(b, b->size - 1))
+			{
+				ft_printfln("pa");
+				pw_push(b, a);
+			}
+			else
+			{
+				ft_printfln("rrb");
+				pw_rev_rotate(b);
+			}
+		}
+		i++;
+	}
+	if (pw_is_sorted(a))
+		return ;
+	if (((int*)a->data)[a->size - 1] == 1)
+	{
+		pw_rev_rotate(a);
+		ft_printfln("rra");
+	}
+	while (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
+	{
+		pw_rev_rotate(a);
+		ft_printfln("rra");
+	}
+	pw_split_mt_avg(a, b);
+	if (pw_is_sorted(a))
+		return ;
+	while (ARRAY_DATA(a, a->size - 1) <= avg && ARRAY_DATA(a, a->size - 1) != 1)
+	{
+		pw_push(a, b);
+		ft_printfln("pb");
+	}
+	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
+		pw_split_mt_avg(a, b);
+	while (ARRAY_DATA(a, a->size - 1) != ((int*)a->data)[0] + 1 && ARRAY_DATA(a, a->size - 1) != 1)
+	{
+		pw_push(a, b);
+		ft_printfln("pb");
+	}
+}
+
+void
+	ft_push_swap_4(t_array a, t_array b)
+{
+	while (a.size > 0)
+	{
+		pw_push(&a, &b);
+		ft_printfln("pb");
+	}
+	while (!pw_is_sorted(&a) || a.size == 0 || b.size != 0)
+		pw_split_mt_avg(&a, &b);
+}
+
 int
 	main(int ac, char **av)
 {
@@ -231,6 +391,6 @@ int
 		}
 		pw_sortdata_quick(&da);
 		pw_rank(&a, &da);
-		ft_push_swap_3(a, b);
+		ft_push_swap_4_verbose(a, b);
 	}
 }

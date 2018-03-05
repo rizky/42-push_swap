@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_operators_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 22:20:40 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/05 15:12:41 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void
 	int i;
 	int	maxa;
 	int	maxb;
+	static int	counter=0;
 
 	maxa = pw_get_max(a);
 	maxb = pw_get_max(b);
@@ -102,8 +103,9 @@ void
 		i = a->size - 1;
 	else
 		i = b->size - 1;
-	usleep(120000);
+	usleep(80000);
 	system("clear");
+	ft_printfln("Counter: %d", ++counter);
 	i = a->size + b->size + 1;
 	while (i >= 0)
 	{
