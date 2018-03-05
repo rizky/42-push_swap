@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 16:10:10 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:12:26 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,10 +223,20 @@ void
 	i = 0;
 	while (i < size)
 	{
-		if (avg <= ARRAY_DATA(b, b->size - 1))
-			pw_push(b, a);
+		if (b->size < 10)
+		{
+			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
+				pw_push(b, a);
+			else
+				pw_rev_rotate(b);
+		}
 		else
-			pw_rev_rotate(b);
+		{
+			if (avg <= ARRAY_DATA(b, b->size - 1))
+				pw_push(b, a);
+			else
+				pw_rev_rotate(b);
+		}
 		i++;
 		pw_print_stripe(a, b);
 		ft_printfln("%d - Split by avg: (%d)", depth, avg);
