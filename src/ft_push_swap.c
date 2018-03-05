@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 16:12:26 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:02:16 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void
 			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
 				pw_push(b, a);
 			else
-				pw_rev_rotate(b);
+				pw_rotate(b);
 		}
 		else
 		{
@@ -265,7 +265,7 @@ void
 	}
 	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
 		pw_split_mt_avg_verbose(a, b);
-	while (ARRAY_DATA(b, b->size - 1) <= max && ARRAY_DATA(a, a->size - 1) != 1)
+	while (ARRAY_DATA(a, a->size - 1) <= max && ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
 			pw_rev_rotate(a);
@@ -285,7 +285,7 @@ void
 	while (a.size > 0)
 	{
 		pw_push(&a, &b);
-		pw_print_stripe(&a, &b);
+		// pw_print_stripe(&a, &b);
 	}
 	pw_split_mt_avg_verbose(&a, &b);
 	ft_printfln("Finished");
