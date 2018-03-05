@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/04 18:58:35 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/05 21:50:55 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int
 			i++;
 		}
 		if (b.size == 0 && pw_is_sorted(&a))
-			ft_printfln("OK (%d)", i);
+			ft_printfln("OK");
 		else
 			ft_printfln("KO");
 	}

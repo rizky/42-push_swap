@@ -53,3 +53,6 @@ dkms.conf
 
 push_swap
 checker
+
+*.cache_exists
+*.DS_Store
