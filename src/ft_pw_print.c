@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 01:37:00 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:57:51 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void
 		i = b->size - 1;
 	max = (pw_get_max(a) > pw_get_max(b)
 		? pw_get_max(a) : pw_get_max(b));
-	usleep(80000);
+	usleep(20000);
 	system("clear");
 	ft_printfln("Counter: %d", ++counter);
 	i = a->size + b->size + 1;

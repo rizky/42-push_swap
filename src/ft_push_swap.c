@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 01:17:24 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:11:53 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,27 @@ void
 		pw_print_stack(a, b);
 	else
 		ft_printfln("%s", instr);
+}
+
+void
+	pw_smart_rotate(t_array *a, t_array *b)
+{
+	int i;
+
+	i = -1;
+	while (++i < (int)a->size)
+		if (ARRAY_DATA(a, i) == pw_get_max(a))
+			break ;
+	if (i <= pw_get_avg(a, a->size))
+	{
+		pw_rotate(a, b);
+		pw_log(b, a, "rb");
+	}
+	else
+	{
+		pw_rev_rotate(a, b);
+		pw_log(b, a, "rrb");
+	}
 }
 
 void
@@ -39,10 +60,7 @@ void
 				pw_log(a, b, "pa");
 			}
 			else
-			{
-				pw_rotate(b, a);
-				pw_log(a, b, "rb");
-			}
+				pw_smart_rotate(b, a);
 		}
 		else
 		{
@@ -52,10 +70,7 @@ void
 				pw_log(a, b, "pa");
 			}
 			else
-			{
-				pw_rev_rotate(b, a);
-				pw_log(a, b, "rrb");
-			}
+				pw_smart_rotate(b, a);
 		}
 		i++;
 		
@@ -137,7 +152,7 @@ int
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	i = 1;
-	g_isverbose = 0;
+	g_isverbose = 1;
 	if (ac > 1)
 	{
 		while (i < ac)

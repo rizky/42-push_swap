@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 01:16:18 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:20:54 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,20 @@ void
 		i = 3;
 		index++;
 	}
-	if (line[index] == 'a')
+	if (line[index] == 'a' || line[index] == 'r')
 		(((void (*)())op[i])(a, b));
-	else if (line[index] == 'b')
+	if (line[index] == 'b' || line[index] == 'r')
 		(((void (*)())op[i])(b, a));
-	else
-	{
-		(((void (*)())op[i])(a, b));
-		(((void (*)())op[i])(b, a));
-	}
 }
 
 int
 	main(int ac, char **av)
 {
-	int		i;
-	char	*line;
+	int			i;
+	char		*line;
 	t_array		a;
 	t_array		b;
-	int		temp;
+	int			num;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
@@ -75,8 +70,8 @@ int
 	{
 		while (i < ac)
 		{
-			temp = atoi(av[i]);
-			fta_append(&a, &temp, 1);
+			num = atoi(av[i]);
+			fta_append(&a, &num, 1);
 			i++;
 		}
 		while (get_next_line(0, &line))
