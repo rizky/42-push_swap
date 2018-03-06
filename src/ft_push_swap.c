@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 14:11:53 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:20:09 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void
 	while (++i < (int)a->size)
 		if (ARRAY_DATA(a, i) == pw_get_max(a))
 			break ;
-	if (i <= pw_get_avg(a, a->size))
+	if (i <= (int)a->size / 2)
 	{
 		pw_rotate(a, b);
 		pw_log(b, a, "rb");
@@ -70,7 +70,10 @@ void
 				pw_log(a, b, "pa");
 			}
 			else
-				pw_smart_rotate(b, a);
+			{
+				pw_rev_rotate(b, a);
+				pw_log(a, b, "rrb");
+			}
 		}
 		i++;
 		
@@ -152,7 +155,7 @@ int
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	i = 1;
-	g_isverbose = 1;
+	g_isverbose = 0;
 	if (ac > 1)
 	{
 		while (i < ac)
