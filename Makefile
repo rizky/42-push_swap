@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/05 15:38:47 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/06 01:21:49 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,14 +95,12 @@ test: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	@ ./push_swap $(ARG)
-	@ ./push_swap $(ARG) |  wc -l
 	./push_swap $(ARG) | ./checker -v $(ARG)
 
 test_ch: $(NAME_C)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
-	@cat instructions.txt | ./checker -v 8 5 6 3 1 2
+	@./push_swap $(ARG) | ./checker $(ARG)
 
 test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)

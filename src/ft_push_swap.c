@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 01:08:05 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 01:17:24 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,11 +151,6 @@ int
 		pw_rank(&a, &b);
 		fta_clear(&b);
 		b = NEW_ARRAY(int);
-		// while (a.size > 0)
-		// {
-		// 	pw_push(&a, &b);
-		// 	pw_log(&a, &b, "pb");
-		// }
 		pw_split_avg_rev(&a, &b, pw_get_avg(&a, a.size), a.size);
 		ft_push_swap(&a, &b);
 		pw_backtrack(&a, &b, pw_get_max(&a));

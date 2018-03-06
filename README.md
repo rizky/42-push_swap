@@ -32,7 +32,8 @@ Current Record:
 500 : 5500 | 7000 | 8500 | 10000 | 11500
 
 make test ARG="`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`"
-
+make test_pw ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`"  | wc -l
+make test_ch ARG="`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`"
 
 Improvement Task List
 - Rotate vs Rev_Rotate depend on the distribution.
