@@ -6,11 +6,58 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 21:50:55 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 01:16:18 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+static int g_isverbose;
+
 #include "push_swap.h"
+
+int
+	pw_getoptions(char **av)
+{
+	int i;
+
+	i = 1;
+	g_isverbose = 0;
+	if (ft_strcmp(av[1], "-v") == 0)
+	{
+		g_isverbose = 1;
+		i++;
+	}
+	return (i);
+}
+
+void
+	pw_checker(char *line, t_array *a, t_array *b)
+{
+	int i;
+	int index;
+	const char *c = "spr";
+	const void *op[] = {
+		&pw_swap, &pw_push, &pw_rotate, &pw_rev_rotate
+	};
+
+	i = 0;
+	index = 1;
+	while (c[i] != '\0' && line[0] != c[i])
+		i++;
+	if (ft_strlen(line) == 3)
+	{
+		i = 3;
+		index++;
+	}
+	if (line[index] == 'a')
+		(((void (*)())op[i])(a, b));
+	else if (line[index] == 'b')
+		(((void (*)())op[i])(b, a));
+	else
+	{
+		(((void (*)())op[i])(a, b));
+		(((void (*)())op[i])(b, a));
+	}
+}
 
 int
 	main(int ac, char **av)
@@ -20,17 +67,10 @@ int
 	t_array		a;
 	t_array		b;
 	int		temp;
-	int		is_verbose;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = 1;
-	is_verbose = 0;
-	if (ft_strcmp(av[1], "-v") == 0)
-	{
-		is_verbose = 1;
-		i++;
-	}
+	i = pw_getoptions(av);
 	if (ac > 1)
 	{
 		while (i < ac)
@@ -39,52 +79,14 @@ int
 			fta_append(&a, &temp, 1);
 			i++;
 		}
-		i = 0;
 		while (get_next_line(0, &line))
 		{
-			if (is_verbose)
+			pw_checker(line, &a, &b);
+			if (g_isverbose)
+			{
+				pw_print_stack(&a, &b);
 				printf("Exec %s:\n", line);
-			if (line[0] == 's')
-			{
-				if (line[1] == 'a')
-					pw_swap(&a);
-				else
-					pw_swap(&b);
 			}
-			else if (line[0] == 'p')
-			{
-				if (line[1] == 'a')
-					pw_push(&b, &a);
-				else
-					pw_push(&a, &b);
-			}
-			else if (line[0] == 'r' && ft_strlen(line) == 2)
-			{
-				if (line[1] == 'a')
-					pw_rotate(&a);
-				else if (line[1] == 'b')
-					pw_rotate(&b);
-				else
-				{
-					pw_rotate(&a);
-					pw_rotate(&b);
-				}
-			}
-			else if (line[0] == 'r' && ft_strlen(line) == 3)
-			{
-				if (line[2] == 'a')
-					pw_rev_rotate(&a);
-				else if (line[2] == 'b')
-					pw_rev_rotate(&b);
-				else
-				{
-					pw_rev_rotate(&a);
-					pw_rev_rotate(&b);
-				}
-			}
-			if (is_verbose)
-				pw_print_stripe(&a, &b);
-			i++;
 		}
 		if (b.size == 0 && pw_is_sorted(&a))
 			ft_printfln("OK");

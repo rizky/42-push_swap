@@ -6,17 +6,18 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 22:11:09 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 01:12:24 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void
-	pw_swap(t_array *d)
+	pw_swap(t_array *d, t_array *dv)
 {
 	int temp;
 
+	(void)dv;
 	if (d->size < 2)
 		return ;
 	temp = ARRAY_DATA(d, d->size - 2);
@@ -25,7 +26,7 @@ void
 }
 
 void
-	pw_push(t_array *source, t_array *dest)
+	pw_push(t_array *dest, t_array *source)
 {
 	int temp;
 
@@ -37,10 +38,11 @@ void
 }
 
 void
-	pw_rotate(t_array *d)
+	pw_rotate(t_array *d, t_array *dv)
 {
 	int temp;
 
+	(void)dv;
 	if (d->size == 0)
 		return ;
 	temp = ARRAY_DATA(d, 0);
@@ -49,10 +51,11 @@ void
 }
 
 void
-	pw_rev_rotate(t_array *d)
+	pw_rev_rotate(t_array *d, t_array *dv)
 {
 	int temp;
 
+	(void)dv;
 	if (d->size == 0)
 		return ;
 	temp = ARRAY_DATA(d, d->size-1);
