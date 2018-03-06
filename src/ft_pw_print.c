@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 13:57:51 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:00:10 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void
 	int i;
 	int max;
 	static int counter = 0;
+	int color;
 
 	if (a->size > b->size)
 		i = a->size - 1;
@@ -32,8 +33,16 @@ void
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%*w%3d %*Q%*Q%w\t", i == (int)a->size - 1, ((int*)ARRAY_START(a))[i],
+		{
+			if (((int*)ARRAY_START(a))[i] == ((int*)ARRAY_START(a))[i + 1] + 1 ||
+				((int*)ARRAY_START(a))[i] == ((int*)ARRAY_START(a))[i - 1] - 1)
+				color = 2;
+			else
+				color = 0;
+			ft_printf("%*w%3d %*Q%*Q%w\t", color,
+			((int*)ARRAY_START(a))[i],
 			((int*)ARRAY_START(a))[i], '-', max - ((int*)ARRAY_START(a))[i], ' ');
+		}
 		else
 			ft_printf("%*Q\t", max + 4, ' ');
 		if (i < (int)b->size)
