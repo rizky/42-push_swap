@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 14:20:09 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:14:18 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void
 }
 
 void
-	pw_split_avg(t_array *a, t_array *b, int avg, int size)
+	pw_split(t_array *a, t_array *b, int avg, int size)
 {
 	int i;
 
@@ -81,7 +81,7 @@ void
 }
 
 void
-	pw_split_avg_rev(t_array *a, t_array *b, int avg, int size)
+	pw_split_rev(t_array *a, t_array *b, int avg, int size)
 {
 	int i;
 
@@ -132,7 +132,7 @@ void
 		return ;
 	avg = pw_get_avg(b, b->size);
 	max = pw_get_max(b);
-	pw_split_avg(a, b, avg, b->size);
+	pw_split(a, b, avg, b->size);
 	while ((((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1 ||
 		((int*)a->data)[a->size - 1] == 1) && !pw_is_sorted(a))
 	{
@@ -169,7 +169,7 @@ int
 		pw_rank(&a, &b);
 		fta_clear(&b);
 		b = NEW_ARRAY(int);
-		pw_split_avg_rev(&a, &b, pw_get_avg(&a, a.size), a.size);
+		pw_split_rev(&a, &b, pw_get_avg(&a, a.size), a.size);
 		ft_push_swap(&a, &b);
 		pw_backtrack(&a, &b, pw_get_max(&a));
 	}
