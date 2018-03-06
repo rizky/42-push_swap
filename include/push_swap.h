@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 00:59:07 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 01:30:17 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		pw_rotate(t_array *d, t_array *dv);
 void		pw_rev_rotate(t_array *d, t_array *dv);
 int			pw_is_sorted(t_array *d);
 void		pw_print_stack(t_array *a, t_array *b);
-void		pw_print_stack_2(t_array *a, t_array *b);
 
 void		ft_push_swap(t_array *a, t_array *b);
 
@@ -31,6 +30,6 @@ int			pw_get_min(t_array *d);
 int			pw_get_max(t_array *d);
 int			pw_get_avg(t_array *d, int size);
 
-void		pw_sortdata_quick(t_array *v);
 void		pw_rank(t_array *v, t_array *dv);
+void		pw_sortdata_quick(t_array *v);
 #endif

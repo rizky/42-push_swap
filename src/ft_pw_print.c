@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_operators_2.c                                :+:      :+:    :+:   */
+/*   ft_pw_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 22:19:24 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 01:30:04 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,4 @@ void
 	ft_printfln("%*Q\t%*Q", max + 4, '+', max + 4, '+');
 	ft_printfln("%*s%*Q\t%*s", (max + 4) / 2 + 1, "a",
 				(max + 4) - ((max + 4) / 2 + 1), ' ' , (max + 4) / 2 + 1, "b");
-}
-
-void
-	pw_print_stack_2(t_array *a, t_array *b)
-{
-	int i;
-	int	sp;
-
-	sp = 3;
-	i = (a->size > b->size ? a->size - 1 : b->size - 1);
-	while (i >= 0)
-	{
-		if (i < (int)a->size)
-			ft_printf("%*d ", sp, ARRAY_DATA(a, i));
-		else
-			ft_printf("%*Q ", sp, ' ');
-		if (i < (int)b->size)
-			ft_printfln("%*d ", sp, ARRAY_DATA(b, i));
-		else
-			ft_printf("\n");
-		i--;
-	}
-	ft_printfln("%*Q %*Q", sp, '-', sp, '-');
-	ft_printfln("%*s%*Q %*s", sp / 2 + 1, "a",
-				sp - (sp / 2 + 1), ' ' , sp / 2 + 1, "b");
-	ft_printfln("%50Q",'-');
 }
