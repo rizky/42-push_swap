@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/06 01:21:49 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/06 01:28:43 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_C:= checker
 NAME_PW:= push_swap
 FILE_C:= ft_checker
 FILE_PW:= ft_push_swap 
-FILES:= ft_pw_helper ft_pw_sort ft_pw_operators_1 ft_pw_operators_2
+FILES:= ft_pw_helper ft_pw_sort ft_pw_operators ft_pw_print
 
 # ----- Libft ------
 LFTDIR:=./libft
