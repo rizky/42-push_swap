@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   ft_push_swap.1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 20:36:41 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 21:42:57 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,61 +117,6 @@ void
 		ft_push_swap(a, b);
 }
 
-int
-	pw_get_avg_limit(t_array *d, int limit)
-{
-	int		i;
-	float	total;
-
-	if (d->size == 0)
-		return (0);
-	i = 0;
-	total = 0;
-	while (ARRAY_DATA(d,  (int)d->size - 1 - i) <= limit &&
-		ARRAY_DATA(d,  (int)d->size - 1 - i) != 1)
-	{
-		total += ARRAY_DATA(d, (int)d->size - 1 - i);
-		i++;
-	}
-	return ((int)(total / i + 0.5));
-}
-
-void
-	pw_backtrack_2(t_array *a, t_array *b, int limit)
-{
-	int c;
-	int i;
-	int avg;
-
-	c = 0;
-	avg = pw_get_avg_limit(a, limit);
-	while (ARRAY_DATA(a, a->size - 1) <= limit && ARRAY_DATA(a, a->size - 1) != 1)
-	{
-		if (((int*)a->data)[a->size - 1] >= avg)
-		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
-			c++;
-		}
-		else
-		{
-			pw_push(b, a);
-			pw_log(a, b, "pb");
-		}	
-	}
-	if (c == 0)
-		return ;
-	i = 0;
-	while (i < c)
-	{
-		pw_rotate(a, b);
-		pw_log(a, b, "ra");
-		i++;
-	}
-	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
-		ft_push_swap(a, b);
-}
-
 void
 	ft_push_swap(t_array *a, t_array *b)
 {
@@ -218,7 +163,6 @@ int
 		b = NEW_ARRAY(int);
 		pw_split_to_b(&a, &b, pw_get_avg(&a), a.size);
 		ft_push_swap(&a, &b);
-		pw_backtrack_2(&a, &b, pw_get_max(&a));
 		pw_backtrack(&a, &b, pw_get_max(&a));
 	}
 }
