@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 02:47:09 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 17:09:13 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void
 	if (d->size == 0)
 		return ;
 	temp = ARRAY_DATA(d, 0);
-	fta_popindex(d, 0, 1);
 	fta_append(d, &temp, 1);
+	fta_popindex(d, 0, 1);
 }
 
 void
@@ -58,7 +58,7 @@ void
 	(void)dv;
 	if (d->size == 0)
 		return ;
-	temp = ARRAY_DATA(d, d->size-1);
+	temp = ARRAY_DATA(d, d->size - 1);
 	fta_popback(d, 1);
 	fta_insert(d, &temp, 1, 0);
 }

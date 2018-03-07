@@ -27,7 +27,7 @@ https://github.com/Binary-Hackers/42_Corrections/tree/master/00_Projects/02_Algo
 
 Current Record:
 100: 773
-500: 5592
+500: 5478
 
 100 : 700 | 900 | 1100 | 1300 | 1500
 500 : 5500 | 7000 | 8500 | 10000 | 11500
