@@ -17,6 +17,7 @@ git pull && git submodule init && git submodule update && git submodule status
 
 Quick Sort
 https://www.youtube.com/watch?v=SLauY6PpjW4
+https://www.youtube.com/watch?v=egU3YD8OKbw&t=51s
 
 while true; do { ARG=`ruby -e "puts (-50..49).to_a.shuffle.join(' ')"`; valgrind --leak-check=full ./push_swap $ARG | ./checker $ARG}; done
 
