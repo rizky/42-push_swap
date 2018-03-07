@@ -6,28 +6,13 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 13:20:54 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:13:40 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 static int g_isverbose;
 
 #include "push_swap.h"
-
-int
-	pw_getoptions(char **av)
-{
-	int i;
-
-	i = 1;
-	g_isverbose = 0;
-	if (ft_strcmp(av[1], "-v") == 0)
-	{
-		g_isverbose = 1;
-		i++;
-	}
-	return (i);
-}
 
 void
 	pw_checker(char *line, t_array *a, t_array *b)
@@ -65,7 +50,7 @@ int
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = pw_getoptions(av);
+	i = pw_getoptions(av, &g_isverbose);
 	if (ac > 1)
 	{
 		while (i < ac)

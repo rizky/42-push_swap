@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 16:52:26 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 01:35:13 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,7 @@ int
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = 1;
-	g_isverbose = 1;
+	i = pw_getoptions(av, &g_isverbose);
 	if (ac > 1)
 	{
 		while (i < ac)
@@ -165,6 +164,8 @@ int
 			fta_append(&b, &num, 1);
 			i++;
 		}
+		if (pw_is_sorted(&a))
+			return (0);
 		pw_sortdata_quick(&b);
 		pw_rank(&a, &b);
 		fta_clear(&b);

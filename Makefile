@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/06 01:28:43 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/06 18:16:13 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ test: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
-	./push_swap $(ARG) | ./checker -v $(ARG)
+	@./push_swap $(ARG) | ./checker -v $(ARG)
 
 test_ch: $(NAME_C)
 	@echo "Files :" $(FILES)
@@ -106,11 +106,13 @@ test_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 	@ ./push_swap $(ARG)
-	@ echo $(ARG) > input.txt
+	
 
 debug_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) -g -w $(CFLAGS) src/ft_push_swap-debug.c $(SRC) $(LFLAGS) -o push_swap
+	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
+	@ ./push_swap -v $(ARG)
+	@ echo $(ARG) > input.txt
 
 debug: $(NAME_C) $(NAME_PW)
 	@echo "Files :" $(FILES)
