@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 17:13:29 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:12:14 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int
 }
 
 int
-	pw_get_avg(t_array *d, int size)
+	pw_get_avg(t_array *d)
 {
 	int		i;
 	float	total;
@@ -60,12 +60,12 @@ int
 		return (0);
 	i = d->size - 1;
 	total = 0;
-	while (i >= (int)d->size - size)
+	while (i >= 0)
 	{
 		total += ARRAY_DATA(d, i);
 		i--;
 	}
-	return ((int)(total / size + 0.5));
+	return ((int)(total / (int)d->size + 0.5));
 }
 
 int

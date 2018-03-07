@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/05 22:04:33 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 02:38:04 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static int
 	return left;
 }
 
-static void
-	pw_quicksort_array(t_array *v, int left, int right)
+void
+	pw_sortdata_quick(t_array *v, int left, int right)
 {
 	int pivot;
 	int index;
@@ -70,12 +70,6 @@ static void
 		return ;
 	pivot = ARRAY_DATA(v, (right + left) / 2);
 	index = pw_partition_array(v, left, right, pivot);
-	pw_quicksort_array(v, left, index - 1);
-	pw_quicksort_array(v, index, right);
-}
-
-void
-	pw_sortdata_quick(t_array *v)
-{
-	pw_quicksort_array(v, 0, (int)v->size - 1);
+	pw_sortdata_quick(v, left, index - 1);
+	pw_sortdata_quick(v, index, right);
 }

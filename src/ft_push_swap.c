@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 01:35:13 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:10:04 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void
 }
 
 void
-	pw_split(t_array *a, t_array *b, int avg, int size)
+	pw_split_to_a(t_array *a, t_array *b, int avg, int size)
 {
 	int i;
 
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
 		if (b->size < 10)
 		{
@@ -75,13 +75,11 @@ void
 				pw_log(a, b, "rrb");
 			}
 		}
-		i++;
-		
 	}
 }
 
 void
-	pw_split_rev(t_array *a, t_array *b, int avg, int size)
+	pw_split_to_b(t_array *a, t_array *b, int avg, int size)
 {
 	int i;
 
@@ -125,14 +123,12 @@ void
 void
 	ft_push_swap(t_array *a, t_array *b)
 {
-	int avg;
 	int max;
 
 	if (b->size == 0)
 		return ;
-	avg = pw_get_avg(b, b->size);
 	max = pw_get_max(b);
-	pw_split(a, b, avg, b->size);
+	pw_split_to_a(a, b, pw_get_avg(b), b->size);
 	while ((((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1 ||
 		((int*)a->data)[a->size - 1] == 1) && !pw_is_sorted(a))
 	{
@@ -140,7 +136,7 @@ void
 		pw_log(a, b, "rra");
 	}
 	ft_push_swap(a, b);
-	pw_backtrack(a, b, avg);
+	pw_backtrack(a, b, pw_get_avg(b));
 	pw_backtrack(a, b, max);
 }
 
@@ -154,23 +150,22 @@ int
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = pw_getoptions(av, &g_isverbose);
+	i = pw_getoptions(av, &g_isverbose) - 1;
 	if (ac > 1)
 	{
-		while (i < ac)
+		while (++i < ac)
 		{
 			num = ft_atoi(av[i]);
 			fta_append(&a, &num, 1);
 			fta_append(&b, &num, 1);
-			i++;
 		}
 		if (pw_is_sorted(&a))
 			return (0);
-		pw_sortdata_quick(&b);
+		pw_sortdata_quick(&b, 0, b.size - 1);
 		pw_rank(&a, &b);
 		fta_clear(&b);
 		b = NEW_ARRAY(int);
-		pw_split_rev(&a, &b, pw_get_avg(&a, a.size), a.size);
+		pw_split_to_b(&a, &b, pw_get_avg(&a), a.size);
 		ft_push_swap(&a, &b);
 		pw_backtrack(&a, &b, pw_get_max(&a));
 	}
