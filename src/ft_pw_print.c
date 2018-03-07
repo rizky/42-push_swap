@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 03:18:30 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:26:01 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int
 	pw_print_color(t_array *v, int i, int d)
 {
+	if (ARRAY_DATA(v, i) == pw_get_max(v))
+		return (RED);
 	if (ARRAY_DATA(v, i) == ARRAY_DATA(v, i + 1) + d ||
 		ARRAY_DATA(v, i) == ARRAY_DATA(v, i - 1) - d ||
 		ARRAY_DATA(v, i) == ARRAY_DATA(v, i + 1) ||

@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 03:10:04 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:43:10 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ void
 void
 	pw_split_to_a(t_array *a, t_array *b, int avg, int size)
 {
-	int i;
-
-	i = -1;
-	while (++i < size)
+	while (size-- > 0)
 	{
-		if (b->size < 10)
+		if (b->size < 15)
 		{
 			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
 			{
