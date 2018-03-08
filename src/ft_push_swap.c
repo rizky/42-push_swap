@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 20:19:57 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 20:24:52 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,6 @@ int
 	i = pw_getoptions(av, &g_isverbose) - 1;
 	if (ac > 1)
 	{
-		fta_resize(&a, ac - i);
 		while (++i < ac)
 		{
 			num = ft_atoi(av[i]);
