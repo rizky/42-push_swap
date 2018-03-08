@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 11:32:39 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 19:05:56 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void
 	int			max;
 	static int	counter = 0;
 
-	usleep(20000);
+	usleep(30000);
 	system("clear");
 	ft_printfln("Counter: %d", ++counter);
 	max = (pw_get_max(a) > pw_get_max(b) ? pw_get_max(a) : pw_get_max(b));

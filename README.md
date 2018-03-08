@@ -39,3 +39,6 @@ make test_ch ARG="`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`"
 Improvement Task List
 - Rotate vs Rev_Rotate depend on the distribution.
 - Devide by < 50%, < 75%, and < 100%
+
+1. 100
+2.  50

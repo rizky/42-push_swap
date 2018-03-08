@@ -6,13 +6,13 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 11:38:17 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 19:12:44 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int g_isverbose;
-
 #include "push_swap.h"
+
+static int g_isverbose;
 
 void
 	pw_checker(char *line, t_array *a, t_array *b)
@@ -39,6 +39,19 @@ void
 		(((void (*)())op[i])(b, a));
 }
 
+void
+	pw_get_arg(t_array *a, int i, int ac, char **av)
+{
+	int			num;
+
+	while (i < ac)
+	{
+		num = atoi(av[i]);
+		fta_append(a, &num, 1);
+		i++;
+	}
+}
+
 int
 	main(int ac, char **av)
 {
@@ -46,19 +59,13 @@ int
 	char		*line;
 	t_array		a;
 	t_array		b;
-	int			num;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	i = pw_getoptions(av, &g_isverbose);
 	if (ac > 1)
 	{
-		while (i < ac)
-		{
-			num = atoi(av[i]);
-			fta_append(&a, &num, 1);
-			i++;
-		}
+		pw_get_arg(&a, i, ac, av);
 		while (get_next_line(0, &line))
 		{
 			pw_checker(line, &a, &b);

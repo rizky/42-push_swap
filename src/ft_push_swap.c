@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 12:03:00 by rnugroho         ###   ########.fr       */
+/*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
+/*   Updated: 2018/03/08 20:19:57 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void
 			pw_log(a, b, "pb");
 		}
 	}
-	if (pw_get_min(b) == ARRAY_DATA(a,0) + 1)
+	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)
 		ft_push_swap(a, b);
 }
 
@@ -219,6 +219,7 @@ int
 	i = pw_getoptions(av, &g_isverbose) - 1;
 	if (ac > 1)
 	{
+		fta_resize(&a, ac - i);
 		while (++i < ac)
 		{
 			num = ft_atoi(av[i]);
