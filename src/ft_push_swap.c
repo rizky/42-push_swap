@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 21:28:41 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 11:58:48 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void
 void
 	pw_backtrack(t_array *a, t_array *b, int size)
 {
-	while (ARRAY_DATA(a, a->size - 1) <= size && ARRAY_DATA(a, a->size - 1) != 1)
+	while (ARRAY_DATA(a, a->size - 1) <= size &&
+			ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
 		{
@@ -127,8 +128,8 @@ int
 		return (0);
 	i = 0;
 	total = 0;
-	while (ARRAY_DATA(d,  (int)d->size - 1 - i) <= limit &&
-		ARRAY_DATA(d,  (int)d->size - 1 - i) != 1)
+	while (ARRAY_DATA(d, (int)d->size - 1 - i) <= limit &&
+		ARRAY_DATA(d, (int)d->size - 1 - i) != 1)
 	{
 		total += ARRAY_DATA(d, (int)d->size - 1 - i);
 		i++;
@@ -145,9 +146,10 @@ void
 
 	c = 0;
 	avg = pw_get_avg_limit(a, limit);
-	while (ARRAY_DATA(a, a->size - 1) <= limit && ARRAY_DATA(a, a->size - 1) != 1)
+	while (ARRAY_DATA(a, a->size - 1) <= limit &&
+			ARRAY_DATA(a, a->size - 1) != 1)
 	{
-		if (((int*)a->data)[a->size - 1] >= avg)
+		if (ARRAY_DATA(a, a->size - 1) >= avg)
 		{
 			pw_rev_rotate(a, b);
 			pw_log(a, b, "rra");
@@ -157,7 +159,7 @@ void
 		{
 			pw_push(b, a);
 			pw_log(a, b, "pb");
-		}	
+		}
 	}
 	if (c == 0)
 		return ;
@@ -180,7 +182,7 @@ int
 	if (d->size == 0)
 		return (0);
 	i = 0;
-	while (ARRAY_DATA(d,  (int)d->size - 1 - i) <= limit)
+	while (ARRAY_DATA(d, (int)d->size - 1 - i) <= limit)
 		i++;
 	return (i);
 }
@@ -231,6 +233,7 @@ int
 		b = NEW_ARRAY(int);
 		pw_split_to_b(&a, &b, pw_get_avg(&a), a.size);
 		ft_push_swap(&a, &b);
+		pw_backtrack_2(&a, &b, pw_get_max(&a));
 		pw_backtrack_2(&a, &b, pw_get_max(&a));
 		pw_backtrack(&a, &b, pw_get_max(&a));
 	}

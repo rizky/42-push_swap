@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 21:42:57 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 11:33:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void
 void
 	pw_backtrack(t_array *a, t_array *b, int size)
 {
-	while (ARRAY_DATA(a, a->size - 1) <= size && ARRAY_DATA(a, a->size - 1) != 1)
+	while (ARRAY_DATA(a, a->size - 1) <= size &&
+		ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_operators.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 17:09:13 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 11:31:49 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void
 
 	if (source->size == 0)
 		return ;
-	temp =ARRAY_DATA(source, source->size - 1);
+	temp = ARRAY_DATA(source, source->size - 1);
 	fta_popback(source, 1);
 	fta_append(dest, &temp, 1);
 }

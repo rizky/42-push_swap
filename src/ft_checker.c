@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/06 17:13:40 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 11:38:17 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int g_isverbose;
 void
 	pw_checker(char *line, t_array *a, t_array *b)
 {
-	int i;
-	int index;
-	const char *c = "spr";
-	const void *op[] = {
+	int			i;
+	int			index;
+	const char	*c = "spr";
+	const void	*op[] = {
 		&pw_swap, &pw_push, &pw_rotate, &pw_rev_rotate
 	};
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 21:15:05 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/08 11:33:16 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ int
 		return (0);
 	i = 0;
 	total = 0;
-	while (ARRAY_DATA(d,  (int)d->size - 1 - i) <= limit &&
-		ARRAY_DATA(d,  (int)d->size - 1 - i) != 1)
+	while (ARRAY_DATA(d, (int)d->size - 1 - i) <= limit &&
+		ARRAY_DATA(d, (int)d->size - 1 - i) != 1)
 	{
 		total += ARRAY_DATA(d, (int)d->size - 1 - i);
 		i++;
@@ -125,7 +125,8 @@ void
 
 	c = 0;
 	avg = pw_get_avg_limit(a, limit);
-	while (ARRAY_DATA(a, a->size - 1) <= limit && ARRAY_DATA(a, a->size - 1) != 1)
+	while (ARRAY_DATA(a, a->size - 1) <= limit &&
+		ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (((int*)a->data)[a->size - 1] >= avg)
 		{
@@ -137,7 +138,7 @@ void
 		{
 			pw_push(b, a);
 			pw_log(a, b, "pb");
-		}	
+		}
 	}
 	if (c == 0)
 		return ;
