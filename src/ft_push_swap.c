@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 20:24:52 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/09 05:51:21 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,31 +210,28 @@ int
 	main(int ac, char **av)
 {
 	int			i;
-	int			num;
 	t_array		a;
 	t_array		b;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = pw_getoptions(av, &g_isverbose) - 1;
+	i = pw_getoptions(av, &g_isverbose);
 	if (ac > 1)
 	{
-		while (++i < ac)
-		{
-			num = ft_atoi(av[i]);
-			fta_append(&a, &num, 1);
-			fta_append(&b, &num, 1);
-		}
+		pw_get_arg(&a, i, ac, av);
+		pw_get_arg(&b, i, ac, av);
+		fta_clear(&a);
 		if (pw_is_sorted(&a))
 			return (0);
 		pw_sortdata_quick(&b, 0, b.size - 1);
 		pw_rank(&a, &b);
-		fta_clear(&b);
 		b = NEW_ARRAY(int);
 		pw_split_to_b(&a, &b, pw_get_avg(&a), a.size);
 		ft_push_swap(&a, &b);
 		pw_backtrack_2(&a, &b, pw_get_max(&a));
 		pw_backtrack_2(&a, &b, pw_get_max(&a));
 		pw_backtrack(&a, &b, pw_get_max(&a));
+		fta_clear(&a);
+		fta_clear(&b);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/07 02:29:11 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/09 05:27:36 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,6 @@ test_pw: $(NAME_PW)
 	@ ./push_swap $(ARG)
 	@ echo $(ARG) > input.txt
 	
-
 debug_pw: $(NAME_PW)
 	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap

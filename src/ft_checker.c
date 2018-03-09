@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 19:12:44 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/09 05:51:10 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ void
 		(((void (*)())op[i])(b, a));
 }
 
-void
-	pw_get_arg(t_array *a, int i, int ac, char **av)
-{
-	int			num;
-
-	while (i < ac)
-	{
-		num = atoi(av[i]);
-		fta_append(a, &num, 1);
-		i++;
-	}
-}
-
 int
 	main(int ac, char **av)
 {
@@ -74,7 +61,10 @@ int
 				pw_print_stack(&a, &b);
 				printf("Exec %s:\n", line);
 			}
+			free(line);
 		}
+		fta_clear(&a);
+		fta_clear(&b);
 		if (b.size == 0 && pw_is_sorted(&a))
 			ft_printfln("OK");
 		else

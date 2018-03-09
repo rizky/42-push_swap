@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 19:05:56 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/09 05:38:48 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,18 @@ void
 		else
 			ft_printf("\n");
 		i--;
+	}
+}
+
+void
+	pw_get_arg(t_array *a, int i, int ac, char **av)
+{
+	int			num;
+
+	while (i < ac)
+	{
+		num = ft_atoi(av[i]);
+		fta_append(a, &num, 1);
+		i++;
 	}
 }
