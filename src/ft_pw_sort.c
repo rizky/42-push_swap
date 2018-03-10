@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/07 02:38:04 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 02:50:09 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void
 		ARRAY_DATA(v, i) = j + 1;
 		i--;
 	}
+	fta_clear(dv);
+	*dv = NEW_ARRAY(int);
 }
 
 static int

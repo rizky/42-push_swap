@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/09 05:51:10 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:15:43 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	i = pw_getoptions(av, &g_isverbose);
 	if (ac > 1)
 	{
+		i = pw_getoptions(av, &g_isverbose);
 		pw_get_arg(&a, i, ac, av);
 		while (get_next_line(0, &line))
 		{

@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/09 05:38:48 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 02:51:00 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void
 {
 	int			num;
 
+	*a = NEW_ARRAY(int);
+	fta_resize(a, ac - i);
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
