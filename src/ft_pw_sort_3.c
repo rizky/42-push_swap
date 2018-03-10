@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 23:48:58 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 23:49:23 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void
 }
 
 void
-	ft_push_swap_segment(t_array *a, t_array *b)
+	ft_push_swap_backtrack(t_array *a, t_array *b)
 {
 	if (pw_is_sorted(a))
 		return ;

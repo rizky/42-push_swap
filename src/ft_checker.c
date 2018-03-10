@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:17:30 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 23:55:40 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int
 			ft_dprintf(2, "Error\n");
 			return (0);
 		}
+		i = 0;
 		while (get_next_line(0, &line))
 		{
 			pw_checker(line, &a, &b);
@@ -64,11 +65,14 @@ int
 				ft_printfln("Exec %s:", line);
 			}
 			free(line);
+			i++;
 		}
 		if (b.size == 0 && pw_is_sorted(&a))
 			ft_printfln("OK");
 		else
 			ft_printfln("KO");
+		if (g_istotal)
+			ft_printfln("Total steps: %i", i);
 		fta_clear(&a);
 		fta_clear(&b);
 	}

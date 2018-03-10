@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:14:11 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 23:52:50 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int
 	g_iscolor = 0;
 	while (av[i] && av[i][0] == '-')
 	{
+		if (ft_strcmp(av[i], "-t") == 0)
+			g_istotal = 1;
 		if (ft_strcmp(av[i], "-v") == 0)
 			g_isverbose = 1;
 		if (ft_strcmp(av[i], "-c") == 0)

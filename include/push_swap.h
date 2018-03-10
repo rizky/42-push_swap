@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:13:26 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 23:51:57 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int		 	g_isverbose;
 int 		g_iscolor;
+int 		g_istotal;
 int 		g_isanimated;
 int 		g_delay;
 
@@ -28,6 +29,7 @@ void		pw_rev_rotate(t_array *d, t_array *dv);
 
 void		ft_push_swap_simple(t_array *a, t_array *b);
 void		ft_push_swap_backtrack(t_array *a, t_array *b);
+void		ft_push_swap_segment(t_array *a, t_array *b);
 
 void		pw_print_stack(t_array *a, t_array *b);
 
