@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 22:04:52 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 00:00:32 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int
 		num = ft_atoi(av[i]);
 		if (num == 0 && !ft_isdigit(av[i][0])
 			&& av[i][1] != '0')
+		{
+			ft_dprintf(2, "Error\n");
 			return (-1);
+		}
 		fta_insert(a, &num, 1, 0);
 		i++;
 	}
