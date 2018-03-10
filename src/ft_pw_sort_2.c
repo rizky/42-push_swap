@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:44:32 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:57:16 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void
 
 		pw_rotate(a, b);
 		pw_log(b, a, "rb");
-
 	}
 }
 
@@ -139,7 +138,7 @@ void
 	while (i < c)
 	{
 		pw_rev_rotate(a, b);
-		pw_log(a, b, "ra");
+		pw_log(a, b, "rra");
 		i++;
 	}
 	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)
