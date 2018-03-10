@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_operators.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 21:46:44 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/08 11:31:49 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:36:35 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void
 }
 
 void
-	pw_rotate(t_array *d, t_array *dv)
+	pw_rev_rotate(t_array *d, t_array *dv)
 {
 	int temp;
 
@@ -51,7 +51,7 @@ void
 }
 
 void
-	pw_rev_rotate(t_array *d, t_array *dv)
+	pw_rotate(t_array *d, t_array *dv)
 {
 	int temp;
 

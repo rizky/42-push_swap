@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:01:57 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:41:07 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void
 			break ;
 	if (i <= (int)a->size / 2)
 	{
-		pw_rotate(a, b);
-		pw_log(a, b, "ra");
+		pw_rev_rotate(a, b);
+		pw_log(a, b, "rra");
 	}
 	else
 	{
-		pw_rev_rotate(a, b);
-		pw_log(a, b, "rra");
+		pw_rotate(a, b);
+		pw_log(a, b, "ra");
 	}
 }
 
@@ -82,22 +82,22 @@ void
 		if (ARRAY_DATA(a, a->size - 2) == pw_get_min(a) &&
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
 		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
+			pw_rotate(a, b);
+			pw_log(a, b, "ra");
 		}
 		if (ARRAY_DATA(a, i - 1) < ARRAY_DATA(a, i))
 		{
 			while (i < (int)a->size - 1)
 			{
-				pw_rev_rotate(a, b);
-				pw_log(a, b, "rra");
+				pw_rotate(a, b);
+				pw_log(a, b, "ra");
 				i++;
 			}
 			if (ARRAY_DATA(a, a->size - 2) == pw_get_min(a) &&
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
 			{
-				pw_rev_rotate(a, b);
-				pw_log(a, b, "rra");
+				pw_rotate(a, b);
+				pw_log(a, b, "ra");
 			}
 			else
 			{
@@ -122,22 +122,22 @@ void
 		if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b) &&
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
 		{
-			pw_rev_rotate(b, a);
-			pw_log(a, b, "rrb");
+			pw_rotate(b, a);
+			pw_log(a, b, "rb");
 		}
 		if (ARRAY_DATA(b, i - 1) > ARRAY_DATA(b, i))
 		{
 			while (i < (int)b->size - 1)
 			{
-				pw_rev_rotate(b, a);
-				pw_log(a, b, "rrb");
+				pw_rotate(b, a);
+				pw_log(a, b, "rb");
 				i++;
 			}
 			if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b) &&
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
 			{
-				pw_rev_rotate(b, a);
-				pw_log(a, b, "rrb");
+				pw_rotate(b, a);
+				pw_log(a, b, "rb");
 			}
 			else
 			{
@@ -154,8 +154,6 @@ void
 {
 	if (pw_is_sorted(a))
 		return ;
-	pw_sortdata(b, 0, b->size - 1);
-	pw_rank(a, b);
 	if (a->size > 4)
 		pw_split(a, b);
 	pw_sort(a, b);

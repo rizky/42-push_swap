@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:20:19 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:44:32 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ void
 			break ;
 	if (i <= (int)a->size / 2)
 	{
-		pw_rotate(a, b);
-		pw_log(b, a, "rb");
+		pw_rev_rotate(a, b);
+		pw_log(b, a, "rrb");
 	}
 	else
 	{
-		pw_rev_rotate(a, b);
-		pw_log(b, a, "rrb");
+
+		pw_rotate(a, b);
+		pw_log(b, a, "rb");
+
 	}
 }
 
@@ -57,8 +59,8 @@ void
 			}
 			else
 			{
-				pw_rev_rotate(b, a);
-				pw_log(a, b, "rrb");
+				pw_rotate(b, a);
+				pw_log(a, b, "rb");
 			}
 		}
 	}
@@ -79,8 +81,8 @@ void
 		}
 		else
 		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
+			pw_rotate(a, b);
+			pw_log(a, b, "ra");
 		}
 		i++;
 	}
@@ -94,8 +96,8 @@ void
 	{
 		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
 		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
+			pw_rotate(a, b);
+			pw_log(a, b, "ra");
 		}
 		else
 		{
@@ -121,8 +123,8 @@ void
 	{
 		if (ARRAY_DATA(a, a->size - 1) >= avg)
 		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
+			pw_rotate(a, b);
+			pw_log(a, b, "ra");
 			c++;
 		}
 		else
@@ -136,7 +138,7 @@ void
 	i = 0;
 	while (i < c)
 	{
-		pw_rotate(a, b);
+		pw_rev_rotate(a, b);
 		pw_log(a, b, "ra");
 		i++;
 	}
@@ -156,8 +158,8 @@ void
 	while ((((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1 ||
 		((int*)a->data)[a->size - 1] == 1) && !pw_is_sorted(a))
 	{
-		pw_rev_rotate(a, b);
-		pw_log(a, b, "rra");
+		pw_rotate(a, b);
+		pw_log(a, b, "ra");
 	}
 	ft_push_swap(a, b);
 	if (pw_get_size(a, max) >= 20)
@@ -170,8 +172,6 @@ void
 {
 	if (pw_is_sorted(a))
 		return ;
-	pw_sortdata(b, 0, b->size - 1);
-	pw_rank(a, b);
 	pw_split_to_b(a, b, pw_get_avg(a), a->size);
 	ft_push_swap(a, b);
 	if (pw_get_size(a, pw_get_max(a)) >= 20)

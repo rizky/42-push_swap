@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:59:46 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:33:07 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int
 			ft_dprintf(2, "Error\n");
 			return (0);
 		}
-		pw_get_arg(&b, i, ac, av);
+		b = NEW_ARRAY(int);
 		if (a.size <= 5)
 			ft_push_swap_simple(&a, &b);
 		else
