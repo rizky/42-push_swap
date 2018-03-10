@@ -6,15 +6,17 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 04:42:52 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:34:23 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 int
-	pw_print_color(t_array *v, int i, int d)
+	pw_print_color(t_array *v, int i, int d, int iscolor)
 {
+	if (!iscolor)
+		return (EOC);
 	if (ARRAY_DATA(v, i) == pw_get_max(v))
 		return (RED);
 	if (ARRAY_DATA(v, i) == ARRAY_DATA(v, i + 1) + d ||
@@ -27,7 +29,7 @@ int
 }
 
 void
-	pw_print_stack(t_array *a, t_array *b)
+	pw_print_stack(t_array *a, t_array *b, int iscolor)
 {
 	int			i;
 	int			max;
@@ -41,13 +43,13 @@ void
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%*w%3d %*Q%*Q%w\t", pw_print_color(a, i, 1),
+			ft_printf("%*w%3d %*Q%*Q%w\t", pw_print_color(a, i, 1, iscolor),
 			ARRAY_DATA(a, i), ARRAY_DATA(a, i), '-',
 			max - ARRAY_DATA(a, i), ' ');
 		else
 			ft_printf("%*Q\t", max + 4, ' ');
 		if (i < (int)b->size)
-			ft_printfln("%*w%3d %*Q%*Q%w", pw_print_color(b, i, -1),
+			ft_printfln("%*w%3d %*Q%*Q%w", pw_print_color(b, i, -1, iscolor),
 			ARRAY_DATA(b, i), ARRAY_DATA(b, i), '-',
 			max - ARRAY_DATA(b, i), ' ');
 		else

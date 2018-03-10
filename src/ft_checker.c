@@ -6,13 +6,11 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/09 14:15:43 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:36:34 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int g_isverbose;
 
 void
 	pw_checker(char *line, t_array *a, t_array *b)
@@ -46,19 +44,21 @@ int
 	char		*line;
 	t_array		a;
 	t_array		b;
+	int			isverbose;
+	int			iscolor;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	if (ac > 1)
 	{
-		i = pw_getoptions(av, &g_isverbose);
+		i = pw_getoptions(av, &isverbose, &iscolor);
 		pw_get_arg(&a, i, ac, av);
 		while (get_next_line(0, &line))
 		{
 			pw_checker(line, &a, &b);
-			if (g_isverbose)
+			if (isverbose)
 			{
-				pw_print_stack(&a, &b);
+				pw_print_stack(&a, &b, iscolor);
 				printf("Exec %s:\n", line);
 			}
 			free(line);

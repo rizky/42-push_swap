@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_algo_1.c                                     :+:      :+:    :+:   */
+/*   ft_pw_sort_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 15:57:17 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:34:04 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include <stdio.h>
 
 static int g_isverbose;
+static int g_iscolor;
 
 void
 	pw_log_1(t_array *a, t_array *b, char *instr)
 {
 	if (g_isverbose)
-		pw_print_stack(a, b);
+		pw_print_stack(a, b, g_iscolor);
 	else
 		ft_printfln("%s", instr);
 }
@@ -162,12 +163,13 @@ void
 }
 
 void
-	ft_push_swap_simple(t_array *a, t_array *b, int isverbose)
+	ft_push_swap_simple(t_array *a, t_array *b, int isverbose, int iscolor)
 {
+	g_iscolor = iscolor;
 	g_isverbose = isverbose;
 	if (pw_is_sorted(a))
 		return ;
-	pw_sortdata_quick(b, 0, b->size - 1);
+	pw_sortdata(b, 0, b->size - 1);
 	pw_rank(a, b);
 	if (a->size > 4)
 		pw_split(a, b);

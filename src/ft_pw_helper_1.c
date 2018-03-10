@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_helper.c                                     :+:      :+:    :+:   */
+/*   ft_pw_helper_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/09 13:59:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:38:50 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,25 @@ int
 }
 
 int
-	pw_getoptions(char **av, int *g_isverbose)
+	pw_getoptions(char **av, int *isverbose, int *iscolor)
 {
 	int i;
 
 	i = 1;
-	*g_isverbose = 0;
-	if (ft_strcmp(av[1], "-v") == 0)
+	*isverbose = 0;
+	*iscolor = 0;
+	while (av[i][0] == '-')
 	{
-		*g_isverbose = 1;
-		i++;
+		if (ft_strcmp(av[i], "-v") == 0)
+		{
+			*isverbose = 1;
+			i++;
+		}
+		if (ft_strcmp(av[i], "-c") == 0)
+		{
+			*iscolor = 1;
+			i++;
+		}
 	}
 	return (i);
 }

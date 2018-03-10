@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_sort.c                                       :+:      :+:    :+:   */
+/*   ft_pw_sort_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 02:50:09 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:29:04 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int
 }
 
 void
-	pw_sortdata_quick(t_array *v, int left, int right)
+	pw_sortdata(t_array *v, int left, int right)
 {
 	int pivot;
 	int index;
@@ -72,6 +72,6 @@ void
 		return ;
 	pivot = ARRAY_DATA(v, (right + left) / 2);
 	index = pw_partition_array(v, left, right, pivot);
-	pw_sortdata_quick(v, left, index - 1);
-	pw_sortdata_quick(v, index, right);
+	pw_sortdata(v, left, index - 1);
+	pw_sortdata(v, index, right);
 }
