@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/09 14:23:34 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 15:55:46 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void		pw_swap(t_array *d, t_array *dv);
 void		pw_push(t_array *source, t_array *dest);
 void		pw_rotate(t_array *d, t_array *dv);
 void		pw_rev_rotate(t_array *d, t_array *dv);
+
+void		ft_push_swap_simple(t_array *a, t_array *b, int isverbose);
+void		ft_push_swap_backtrack(t_array *a, t_array *b);
 
 void		pw_print_stack(t_array *a, t_array *b);
 
