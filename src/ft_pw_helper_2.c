@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:27:49 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 22:04:52 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int
 	if (d->size == 0)
 		return (0);
 	i = 0;
-	while (ARRAY_DATA(d, (int)d->size - 1 - i) <= limit)
+	while (ARRAY_DATA(d, (int)d->size - 1 - i) <= limit &&
+		ARRAY_DATA(d, (int)d->size - 1 - i) != 1)
 		i++;
 	return (i);
 }
