@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:35:29 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:45:43 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_push_swap_backtrack(t_array *a, t_array *b, int isverbose, int iscolor)
 
 void		pw_print_stack(t_array *a, t_array *b, int iscolor);
 
-void		pw_get_arg(t_array *a, int i, int ac, char **av);
+int			pw_get_arg(t_array *a, int i, int ac, char **av);
 void		ft_push_swap(t_array *a, t_array *b);
 
 int			pw_get_min(t_array *d);

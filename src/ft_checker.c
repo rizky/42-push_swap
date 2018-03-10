@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:36:34 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:48:18 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,18 @@ int
 	if (ac > 1)
 	{
 		i = pw_getoptions(av, &isverbose, &iscolor);
-		pw_get_arg(&a, i, ac, av);
+		if (pw_get_arg(&a, i, ac, av) == -1)
+		{
+			ft_dprintf(2, "Error\n");
+			return (0);
+		}
 		while (get_next_line(0, &line))
 		{
 			pw_checker(line, &a, &b);
 			if (isverbose)
 			{
 				pw_print_stack(&a, &b, iscolor);
-				printf("Exec %s:\n", line);
+				ft_printfln("Exec %s:", line);
 			}
 			free(line);
 		}
@@ -70,4 +74,5 @@ int
 		else
 			ft_printfln("KO");
 	}
+	return (0);
 }

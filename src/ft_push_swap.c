@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:35:05 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:48:11 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int
 	if (ac > 1)
 	{
 		i = pw_getoptions(av, &isverbose, &iscolor);
-		pw_get_arg(&a, i, ac, av);
+		if (pw_get_arg(&a, i, ac, av) == -1)
+		{
+			ft_dprintf(2, "Error\n");
+			return (0);
+		}
 		pw_get_arg(&b, i, ac, av);
 		if (a.size <= 5)
 			ft_push_swap_simple(&a, &b, isverbose, iscolor);

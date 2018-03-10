@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:24:18 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:55:21 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,23 @@ int
 		i++;
 	}
 	return ((int)(total / i + 0.5));
+}
+
+int
+	pw_get_arg(t_array *a, int i, int ac, char **av)
+{
+	int			num;
+
+	*a = NEW_ARRAY(int);
+	fta_resize(a, ac - i);
+	while (i < ac)
+	{
+		num = ft_atoi(av[i]);
+		if (num == 0 && !ft_isdigit(av[i][0])
+			&& av[i][1] != '0')
+			return (-1);
+		fta_append(a, &num, 1);
+		i++;
+	}
+	return (1);
 }
