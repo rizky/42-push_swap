@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:56:10 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:14:11 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,25 @@ int
 }
 
 int
-	pw_getoptions(char **av, int *isverbose, int *iscolor)
+	pw_getoptions(char **av)
 {
 	int i;
 
 	i = 1;
-	*isverbose = 0;
-	*iscolor = 0;
+	g_isverbose = 0;
+	g_iscolor = 0;
 	while (av[i] && av[i][0] == '-')
 	{
 		if (ft_strcmp(av[i], "-v") == 0)
-			*isverbose = 1;
+			g_isverbose = 1;
 		if (ft_strcmp(av[i], "-c") == 0)
-			*iscolor = 1;
+			g_iscolor = 1;
+		if (ft_strcmp(av[i], "-a") == 0)
+		{
+			g_isanimated = 1;
+			i++;
+			g_delay = ft_atoi(av[i]);
+		}
 		i++;
 	}
 	return (i);

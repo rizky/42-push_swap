@@ -6,24 +6,11 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:34:04 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:01:57 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-static int g_isverbose;
-static int g_iscolor;
-
-void
-	pw_log_1(t_array *a, t_array *b, char *instr)
-{
-	if (g_isverbose)
-		pw_print_stack(a, b, g_iscolor);
-	else
-		ft_printfln("%s", instr);
-}
 
 void
 	pw_merge(t_array *a, t_array *b)
@@ -31,7 +18,7 @@ void
 	while (b->size > 0)
 	{
 		pw_push(a, b);
-		pw_log_1(a, b, "pa");
+		pw_log(a, b, "pa");
 	}
 }
 
@@ -47,12 +34,12 @@ void
 	if (i <= (int)a->size / 2)
 	{
 		pw_rotate(a, b);
-		pw_log_1(a, b, "ra");
+		pw_log(a, b, "ra");
 	}
 	else
 	{
 		pw_rev_rotate(a, b);
-		pw_log_1(a, b, "rra");
+		pw_log(a, b, "rra");
 	}
 }
 
@@ -73,7 +60,7 @@ void
 					return ;
 			}
 			pw_push(b, a);
-			pw_log_1(a, b, "pb");
+			pw_log(a, b, "pb");
 		}
 		else
 		{
@@ -96,26 +83,26 @@ void
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
 		{
 			pw_rev_rotate(a, b);
-			pw_log_1(a, b, "rra");
+			pw_log(a, b, "rra");
 		}
 		if (ARRAY_DATA(a, i - 1) < ARRAY_DATA(a, i))
 		{
 			while (i < (int)a->size - 1)
 			{
 				pw_rev_rotate(a, b);
-				pw_log_1(a, b, "rra");
+				pw_log(a, b, "rra");
 				i++;
 			}
 			if (ARRAY_DATA(a, a->size - 2) == pw_get_min(a) &&
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
 			{
 				pw_rev_rotate(a, b);
-				pw_log_1(a, b, "rra");
+				pw_log(a, b, "rra");
 			}
 			else
 			{
 				pw_swap(a, b);
-				pw_log_1(a, b, "sa");
+				pw_log(a, b, "sa");
 			}
 		}
 		i--;
@@ -136,26 +123,26 @@ void
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
 		{
 			pw_rev_rotate(b, a);
-			pw_log_1(a, b, "rrb");
+			pw_log(a, b, "rrb");
 		}
 		if (ARRAY_DATA(b, i - 1) > ARRAY_DATA(b, i))
 		{
 			while (i < (int)b->size - 1)
 			{
 				pw_rev_rotate(b, a);
-				pw_log_1(a, b, "rrb");
+				pw_log(a, b, "rrb");
 				i++;
 			}
 			if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b) &&
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
 			{
 				pw_rev_rotate(b, a);
-				pw_log_1(a, b, "rrb");
+				pw_log(a, b, "rrb");
 			}
 			else
 			{
 				pw_swap(b, a);
-				pw_log_1(a, b, "sb");
+				pw_log(a, b, "sb");
 			}
 		}
 		i--;
@@ -163,10 +150,8 @@ void
 }
 
 void
-	ft_push_swap_simple(t_array *a, t_array *b, int isverbose, int iscolor)
+	ft_push_swap_simple(t_array *a, t_array *b)
 {
-	g_iscolor = iscolor;
-	g_isverbose = isverbose;
 	if (pw_is_sorted(a))
 		return ;
 	pw_sortdata(b, 0, b->size - 1);

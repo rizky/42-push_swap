@@ -6,23 +6,11 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:33:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:20:19 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int g_isverbose;
-static int g_iscolor;
-
-void
-	pw_log(t_array *a, t_array *b, char *instr)
-{
-	if (g_isverbose)
-		pw_print_stack(a, b, g_iscolor);
-	else
-		ft_printfln("%s", instr);
-}
 
 void
 	pw_smart_rotate(t_array *a, t_array *b)
@@ -178,18 +166,19 @@ void
 }
 
 void
-	ft_push_swap_backtrack(t_array *a, t_array *b, int isverbose, int iscolor)
+	ft_push_swap_backtrack(t_array *a, t_array *b)
 {
-	g_iscolor = iscolor;
-	g_isverbose = isverbose;
 	if (pw_is_sorted(a))
 		return ;
 	pw_sortdata(b, 0, b->size - 1);
 	pw_rank(a, b);
 	pw_split_to_b(a, b, pw_get_avg(a), a->size);
 	ft_push_swap(a, b);
-	pw_backtrack_2(a, b, pw_get_max(a));
-	pw_backtrack_2(a, b, pw_get_max(a));
+	if (pw_get_size(a, pw_get_max(a)) >= 20)
+	{
+		pw_backtrack_2(a, b, pw_get_max(a));
+		pw_backtrack_2(a, b, pw_get_max(a));
+	}
 	pw_backtrack(a, b, pw_get_max(a));
 	fta_clear(a);
 	fta_clear(b);

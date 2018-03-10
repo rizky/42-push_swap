@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:48:18 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:17:30 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,12 @@ int
 	char		*line;
 	t_array		a;
 	t_array		b;
-	int			isverbose;
-	int			iscolor;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	if (ac > 1)
 	{
-		i = pw_getoptions(av, &isverbose, &iscolor);
+		i = pw_getoptions(av);
 		if (pw_get_arg(&a, i, ac, av) == -1)
 		{
 			ft_dprintf(2, "Error\n");
@@ -60,19 +58,19 @@ int
 		while (get_next_line(0, &line))
 		{
 			pw_checker(line, &a, &b);
-			if (isverbose)
+			if (g_isverbose)
 			{
-				pw_print_stack(&a, &b, iscolor);
+				pw_print_stack(&a, &b);
 				ft_printfln("Exec %s:", line);
 			}
 			free(line);
 		}
-		fta_clear(&a);
-		fta_clear(&b);
 		if (b.size == 0 && pw_is_sorted(&a))
 			ft_printfln("OK");
 		else
 			ft_printfln("KO");
+		fta_clear(&a);
+		fta_clear(&b);
 	}
 	return (0);
 }

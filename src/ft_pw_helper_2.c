@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:55:21 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:02:13 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,13 @@ int
 		i++;
 	}
 	return (1);
+}
+
+void
+	pw_log(t_array *a, t_array *b, char *instr)
+{
+	if (g_isverbose)
+		pw_print_stack(a, b);
+	else
+		ft_printfln("%s", instr);
 }
