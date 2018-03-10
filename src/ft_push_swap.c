@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 03:07:44 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/10 03:48:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void
 }
 
 void
-	pw_backtrack(t_array *a, t_array *b, int size)
+	pw_backtrack(t_array *a, t_array *b, int limit)
 {
-	while (ARRAY_DATA(a, a->size - 1) <= size &&
+	while (ARRAY_DATA(a, a->size - 1) <= limit &&
 			ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1)
@@ -203,6 +203,8 @@ void
 		pw_log(a, b, "rra");
 	}
 	ft_push_swap(a, b);
+	if (pw_get_size(a, max) >= 20)
+		pw_backtrack_2(a, b, max);
 	pw_backtrack(a, b, max);
 }
 
