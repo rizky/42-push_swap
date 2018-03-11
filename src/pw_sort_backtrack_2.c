@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_sort_backtrack_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 05:28:03 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 18:05:41 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void
 	while (ARRAY_DATA(a, a->size - 1) <= limit &&
 			ARRAY_DATA(a, a->size - 1) != 1)
 	{
-		if (ARRAY_DATA(a, a->size - 1) == ARRAY_DATA(a, 0) + 1)		
+		if (ARRAY_DATA(a, a->size - 1) == ARRAY_DATA(a, 0) + 1)
 			pw_rotate(a, b, "ra");
 		else
 			pw_push(b, a, "pb");

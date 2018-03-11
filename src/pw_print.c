@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pw_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 00:10:04 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 18:07:50 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,7 @@ void
 {
 	int			i;
 	int			max;
-	static int	counter = 0;
 
-	if (g_isanimated)
-	{
-		usleep(g_delay * 10000);
-		system("clear");
-		ft_printfln("Counter: %d", ++counter);
-	}
 	max = (pw_get_max(a) > pw_get_max(b) ? pw_get_max(a) : pw_get_max(b));
 	i = a->size + b->size + 1;
 	while (i >= 0)
