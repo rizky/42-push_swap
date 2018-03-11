@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 03:02:36 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 03:06:22 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void
 			}
 			else
 			{
-				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1)
+				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1 ||
+					ARRAY_DATA(b, b->size - 1) == 1)
 				{
 					pw_push(a, b);
 					pw_log(a, b, "pa");
@@ -70,7 +71,8 @@ void
 			}
 			else
 			{
-				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1)
+				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1 ||
+					ARRAY_DATA(b, b->size - 1) == 1)
 				{
 					pw_push(a, b);
 					pw_log(a, b, "pa");
