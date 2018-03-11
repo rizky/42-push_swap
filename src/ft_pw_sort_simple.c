@@ -6,21 +6,14 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 04:39:32 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:02:45 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void
-	pw_merge(t_array *a, t_array *b)
-{
-	while (b->size > 0)
-		pw_push(a, b, "pa");
-}
-
-void
-	pw_smart_rotate_1(t_array *a, t_array *b)
+	pw_smart_rotate_a(t_array *a, t_array *b)
 {
 	int i;
 
@@ -46,7 +39,7 @@ void
 		{
 			if (ARRAY_DATA(a, 0) + 1 == ARRAY_DATA(a, a->size - 1))
 			{
-				pw_smart_rotate_1(a, b);
+				pw_smart_rotate_a(a, b);
 				if (pw_is_sorted(a))
 					return ;
 			}
@@ -54,7 +47,7 @@ void
 		}
 		else
 		{
-			pw_smart_rotate_1(a, b);
+			pw_smart_rotate_a(a, b);
 		}
 	}
 }

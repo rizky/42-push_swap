@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 04:46:02 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:03:26 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void		pw_rotate(t_array *d, t_array *dv, char *instr);
 void		pw_rev_rotate(t_array *d, t_array *dv, char *instr);
 void		pw_rev_rotate_r(t_array *d, t_array *dv, char *instr);
 
+void		ch_swap(t_array *d, t_array *dv);
+void		ch_push(t_array *source, t_array *dest);
+void		ch_rotate(t_array *d, t_array *dv);
+void		ch_rev_rotate(t_array *d, t_array *dv);
+
 void		ft_push_swap_simple(t_array *a, t_array *b);
 void		ft_push_swap_backtrack(t_array *a, t_array *b);
 void		ft_push_swap_segment(t_array *a, t_array *b);
@@ -43,6 +48,7 @@ int			pw_get_avg(t_array *d);
 int			pw_is_sorted(t_array *d);
 int			pw_getoptions(char **av);
 void		pw_log(t_array *a, t_array *b, char *instr);
+void		pw_merge(t_array *a, t_array *b);
 
 int			pw_get_size(t_array *d, int limit);
 int			pw_get_avg_limit(t_array *d, int limit);

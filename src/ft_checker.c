@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 00:06:10 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 04:57:18 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void
 	int			index;
 	const char	*c = "spr";
 	const void	*op[] = {
-		&pw_swap, &pw_push, &pw_rotate, &pw_rev_rotate
+		&ch_swap, &ch_push, &ch_rotate, &ch_rev_rotate
 	};
 
 	i = 0;
