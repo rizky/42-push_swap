@@ -1,89 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_sort_2.c                                     :+:      :+:    :+:   */
+/*   ft_pw_sort_backtrack_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 04:53:49 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:28:03 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void
-	pw_smart_rotate(t_array *a, t_array *b)
-{
-	int i;
-
-	i = -1;
-	while (++i < (int)a->size)
-		if (ARRAY_DATA(a, i) == pw_get_max(a))
-			break ;
-	if (i <= (int)a->size / 2)
-		pw_rev_rotate(a, b, "rrb");
-	else
-		pw_rotate(a, b, "rb");
-}
-
-void
-	pw_split_to_a(t_array *a, t_array *b, int avg, int size)
-{
-	while (size-- > 0)
-	{
-		if (b->size < 13)
-		{
-			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
-				pw_push(a, b, "pa");
-			else
-			{
-				if (ARRAY_DATA(b, b->size - 1) == ARRAY_DATA(a, 0) + 1 ||
-					ARRAY_DATA(b, b->size - 1) == 1)
-				{
-					pw_push(a, b, "pa");
-					pw_rotate(a, b, "ra");
-				}
-				else
-				{
-					pw_smart_rotate(b, a);
-				}
-			}
-		}
-		else
-		{
-			if (avg <= ARRAY_DATA(b, b->size - 1))
-				pw_push(a, b, "pa");
-			else
-			{
-				if (ARRAY_DATA(b, b->size - 1) == ARRAY_DATA(a, 0) + 1 ||
-					ARRAY_DATA(b, b->size - 1) == 1)
-				{
-					pw_push(a, b, "pa");
-					pw_rotate(a, b, "ra");
-				}
-				else
-					pw_rotate(b, a, "rb");
-			}
-		}
-	}
-}
-
-void
-	pw_split_to_b(t_array *a, t_array *b, int avg, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (avg > ARRAY_DATA(a, a->size - 1))
-			pw_push(b, a, "pb");
-		else
-			pw_rotate(a, b, "ra");
-		i++;
-	}
-}
 
 void
 	pw_backtrack(t_array *a, t_array *b, int limit)
@@ -101,7 +28,7 @@ void
 }
 
 void
-	pw_backtrack_2(t_array *a, t_array *b, int limit)
+	pw_backtrack_split(t_array *a, t_array *b, int limit)
 {
 	int c;
 	int i;
@@ -120,18 +47,13 @@ void
 		else
 			pw_push(b, a, "pb");
 	}
-	if (c == 0)
-		return ;
-	i = 0;
-	while (i < c)
-	{
+	i = -1;
+	while (++i < c)
 		if (ARRAY_DATA(b, b->size - 1) != pw_get_max(b))
 			pw_rev_rotate_r(a, b, "rrr");
 		else
 			pw_rev_rotate(a, b, "rra");
-		i++;
-	}
-	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)
+	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1 && c > 0)
 		ft_push_swap(a, b);
 }
 
@@ -149,23 +71,6 @@ void
 		pw_rotate(a, b, "ra");
 	ft_push_swap(a, b);
 	if (pw_get_size(a, max) >= 20)
-		pw_backtrack_2(a, b, max);
+		pw_backtrack_split(a, b, max);
 	pw_backtrack(a, b, max);
-}
-
-void
-	ft_push_swap_backtrack(t_array *a, t_array *b)
-{
-	if (pw_is_sorted(a))
-		return ;
-	pw_split_to_b(a, b, pw_get_avg(a), a->size);
-	ft_push_swap(a, b);
-	if (pw_get_size(a, pw_get_max(a)) >= 20)
-	{
-		pw_backtrack_2(a, b, pw_get_max(a));
-		pw_backtrack_2(a, b, pw_get_max(a));
-	}
-	pw_backtrack(a, b, pw_get_max(a));
-	fta_clear(a);
-	fta_clear(b);
 }

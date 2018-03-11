@@ -6,11 +6,28 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 04:29:58 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:25:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void
+	ft_push_swap_backtrack(t_array *a, t_array *b)
+{
+	if (pw_is_sorted(a))
+		return ;
+	pw_split_to_b(a, b, pw_get_avg(a), a->size);
+	ft_push_swap(a, b);
+	if (pw_get_size(a, pw_get_max(a)) >= 20)
+	{
+		pw_backtrack_split(a, b, pw_get_max(a));
+		pw_backtrack_split(a, b, pw_get_max(a));
+	}
+	pw_backtrack(a, b, pw_get_max(a));
+	fta_clear(a);
+	fta_clear(b);
+}
 
 int
 	main(int ac, char **av)
