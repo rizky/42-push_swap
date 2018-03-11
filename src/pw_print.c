@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pw_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 22:05:15 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 00:32:14 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,25 @@ void
 	int			i;
 	int			max;
 
+	if (g_isanimated)
+	{
+		usleep(g_delay * 10000);
+		system("clear");
+	}
 	max = (pw_get_max(a) > pw_get_max(b) ? pw_get_max(a) : pw_get_max(b));
 	i = a->size + b->size + 1;
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
 			ft_printf("%*w%3d %*Q%*Q%w\t", pw_print_color(a, i, 1),
-			ARRAY_DATA(a, i), ARRAY_DATA(a, i), '-',
-			max - ARRAY_DATA(a, i), ' ');
+			ARRAY_DATA(a, i), ABS(ARRAY_DATA(a, i)), '-',
+			max - ABS(ARRAY_DATA(a, i)), ' ');
 		else
 			ft_printf("%*Q\t", max + 4, ' ');
 		if (i < (int)b->size)
 			ft_printfln("%*w%3d %*Q%*Q%w", pw_print_color(b, i, -1),
-			ARRAY_DATA(b, i), ARRAY_DATA(b, i), '-',
-			max - ARRAY_DATA(b, i), ' ');
+			ARRAY_DATA(b, i), ABS(ARRAY_DATA(b, i)), '-',
+			max - ABS(ARRAY_DATA(b, i)), ' ');
 		else
 			ft_printf("\n");
 		i--;
