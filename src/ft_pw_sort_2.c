@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 03:06:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 03:24:31 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void
 {
 	while (size-- > 0)
 	{
-		if (b->size < 15)
+		if (b->size < 13)
 		{
 			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
 			{
