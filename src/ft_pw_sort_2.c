@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_sort_3.c                                     :+:      :+:    :+:   */
+/*   ft_pw_sort_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 23:48:58 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 02:08:00 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,19 @@ void
 				pw_log(a, b, "pa");
 			}
 			else
-				pw_smart_rotate(b, a);
+			{
+				if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b))
+				{
+					pw_push(a, b);
+					pw_log(a, b, "pa");
+					pw_rotate(a, b);
+					pw_log(a, b, "ra");
+				}
+				else
+				{
+					pw_smart_rotate(b, a);
+				}
+			}
 		}
 		else
 		{
@@ -58,8 +70,18 @@ void
 			}
 			else
 			{
-				pw_rotate(b, a);
-				pw_log(a, b, "rb");
+				if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b))
+				{
+					pw_push(a, b);
+					pw_log(a, b, "pa");
+					pw_rotate(a, b);
+					pw_log(a, b, "ra");
+				}
+				else
+				{
+					pw_rotate(b, a);
+					pw_log(a, b, "rb");
+				}
 			}
 		}
 	}
@@ -167,7 +189,7 @@ void
 }
 
 void
-	ft_push_swap_segment(t_array *a, t_array *b)
+	ft_push_swap_backtrack(t_array *a, t_array *b)
 {
 	if (pw_is_sorted(a))
 		return ;
