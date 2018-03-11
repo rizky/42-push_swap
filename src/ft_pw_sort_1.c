@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 21:41:07 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 04:39:32 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ void
 	pw_merge(t_array *a, t_array *b)
 {
 	while (b->size > 0)
-	{
-		pw_push(a, b);
-		pw_log(a, b, "pa");
-	}
+		pw_push(a, b, "pa");
 }
 
 void
@@ -32,15 +29,9 @@ void
 		if (ARRAY_DATA(a, i) == pw_get_min(a))
 			break ;
 	if (i <= (int)a->size / 2)
-	{
-		pw_rev_rotate(a, b);
-		pw_log(a, b, "rra");
-	}
+		pw_rev_rotate(a, b, "rra");
 	else
-	{
-		pw_rotate(a, b);
-		pw_log(a, b, "ra");
-	}
+		pw_rotate(a, b, "ra");
 }
 
 void
@@ -59,8 +50,7 @@ void
 				if (pw_is_sorted(a))
 					return ;
 			}
-			pw_push(b, a);
-			pw_log(a, b, "pb");
+			pw_push(b, a, "pb");
 		}
 		else
 		{
@@ -81,29 +71,19 @@ void
 	{
 		if (ARRAY_DATA(a, a->size - 2) == pw_get_min(a) &&
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
-		{
-			pw_rotate(a, b);
-			pw_log(a, b, "ra");
-		}
+			pw_rotate(a, b, "ra");
 		if (ARRAY_DATA(a, i - 1) < ARRAY_DATA(a, i))
 		{
 			while (i < (int)a->size - 1)
 			{
-				pw_rotate(a, b);
-				pw_log(a, b, "ra");
+				pw_rotate(a, b, "ra");
 				i++;
 			}
 			if (ARRAY_DATA(a, a->size - 2) == pw_get_min(a) &&
 			ARRAY_DATA(a, a->size - 1) == pw_get_max(a))
-			{
-				pw_rotate(a, b);
-				pw_log(a, b, "ra");
-			}
+				pw_rotate(a, b, "ra");
 			else
-			{
-				pw_swap(a, b);
-				pw_log(a, b, "sa");
-			}
+				pw_swap(a, b, "sa");
 		}
 		i--;
 	}
@@ -121,29 +101,19 @@ void
 	{
 		if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b) &&
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
-		{
-			pw_rotate(b, a);
-			pw_log(a, b, "rb");
-		}
+			pw_rotate(b, a, "rb");
 		if (ARRAY_DATA(b, i - 1) > ARRAY_DATA(b, i))
 		{
 			while (i < (int)b->size - 1)
 			{
-				pw_rotate(b, a);
-				pw_log(a, b, "rb");
+				pw_rotate(b, a, "rb");
 				i++;
 			}
 			if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b) &&
 			ARRAY_DATA(b, b->size - 2) == pw_get_max(b))
-			{
-				pw_rotate(b, a);
-				pw_log(a, b, "rb");
-			}
+				pw_rotate(b, a, "rb");
 			else
-			{
-				pw_swap(b, a);
-				pw_log(a, b, "sb");
-			}
+				pw_swap(b, a, "sb");
 		}
 		i--;
 	}

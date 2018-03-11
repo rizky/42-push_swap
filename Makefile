@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/11 01:17:47 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/11 04:22:08 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,13 +93,11 @@ re: fclean
 	@$(MAKE) all
 
 test: $(NAME_C) $(NAME_PW)
-	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 	@./push_swap $(ARG) | ./checker $(OPT) $(ARG)
 
 test_ch: $(NAME_C)
-	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@./push_swap $(ARG) | ./checker $(ARG)
 
@@ -109,13 +107,11 @@ test_pw: $(NAME_PW)
 	@ echo $(ARG) > input.txt
 	
 debug_pw: $(NAME_PW)
-	@echo "Files :" $(FILES)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 	@ ./push_swap $(OPT) $(ARG)
 	@ echo $(ARG) > input.txt
 
 debug: $(NAME_C) $(NAME_PW)
-	@echo "Files :" $(FILES)
 	@$(COMPILER) -g $(IFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 

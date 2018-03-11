@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 03:29:25 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 04:53:49 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,9 @@ void
 		if (ARRAY_DATA(a, i) == pw_get_max(a))
 			break ;
 	if (i <= (int)a->size / 2)
-	{
-		pw_rev_rotate(a, b);
-		pw_log(b, a, "rrb");
-	}
+		pw_rev_rotate(a, b, "rrb");
 	else
-	{
-
-		pw_rotate(a, b);
-		pw_log(b, a, "rb");
-	}
+		pw_rotate(a, b, "rb");
 }
 
 void
@@ -42,19 +35,14 @@ void
 		if (b->size < 13)
 		{
 			if (pw_get_max(b) == ARRAY_DATA(b, b->size - 1))
-			{
-				pw_push(a, b);
-				pw_log(a, b, "pa");
-			}
+				pw_push(a, b, "pa");
 			else
 			{
 				if (ARRAY_DATA(b, b->size - 1) == ARRAY_DATA(a, 0) + 1 ||
 					ARRAY_DATA(b, b->size - 1) == 1)
 				{
-					pw_push(a, b);
-					pw_log(a, b, "pa");
-					pw_rotate(a, b);
-					pw_log(a, b, "ra");
+					pw_push(a, b, "pa");
+					pw_rotate(a, b, "ra");
 				}
 				else
 				{
@@ -65,25 +53,17 @@ void
 		else
 		{
 			if (avg <= ARRAY_DATA(b, b->size - 1))
-			{
-				pw_push(a, b);
-				pw_log(a, b, "pa");
-			}
+				pw_push(a, b, "pa");
 			else
 			{
 				if (ARRAY_DATA(b, b->size - 1) == ARRAY_DATA(a, 0) + 1 ||
 					ARRAY_DATA(b, b->size - 1) == 1)
 				{
-					pw_push(a, b);
-					pw_log(a, b, "pa");
-					pw_rotate(a, b);
-					pw_log(a, b, "ra");
+					pw_push(a, b, "pa");
+					pw_rotate(a, b, "ra");
 				}
 				else
-				{
-					pw_rotate(b, a);
-					pw_log(a, b, "rb");
-				}
+					pw_rotate(b, a, "rb");
 			}
 		}
 	}
@@ -98,15 +78,9 @@ void
 	while (i < size)
 	{
 		if (avg > ARRAY_DATA(a, a->size - 1))
-		{
-			pw_push(b, a);
-			pw_log(a, b, "pb");
-		}
+			pw_push(b, a, "pb");
 		else
-		{
-			pw_rotate(a, b);
-			pw_log(a, b, "ra");
-		}
+			pw_rotate(a, b, "ra");
 		i++;
 	}
 }
@@ -118,15 +92,9 @@ void
 			ARRAY_DATA(a, a->size - 1) != 1)
 	{
 		if (ARRAY_DATA(a, a->size - 1) == ARRAY_DATA(a, 0) + 1)		
-		{
-			pw_rotate(a, b);
-			pw_log(a, b, "ra");
-		}
+			pw_rotate(a, b, "ra");
 		else
-		{
-			pw_push(b, a);
-			pw_log(a, b, "pb");
-		}
+			pw_push(b, a, "pb");
 	}
 	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)
 		ft_push_swap(a, b);
@@ -146,15 +114,11 @@ void
 	{
 		if (ARRAY_DATA(a, a->size - 1) >= avg)
 		{
-			pw_rotate(a, b);
-			pw_log(a, b, "ra");
+			pw_rotate(a, b, "ra");
 			c++;
 		}
 		else
-		{
-			pw_push(b, a);
-			pw_log(a, b, "pb");
-		}
+			pw_push(b, a, "pb");
 	}
 	if (c == 0)
 		return ;
@@ -162,16 +126,9 @@ void
 	while (i < c)
 	{
 		if (ARRAY_DATA(b, b->size - 1) != pw_get_max(b))
-		{
-			pw_rev_rotate(b, a);
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rrr");
-		}
+			pw_rev_rotate_r(a, b, "rrr");
 		else
-		{
-			pw_rev_rotate(a, b);
-			pw_log(a, b, "rra");
-		}
+			pw_rev_rotate(a, b, "rra");
 		i++;
 	}
 	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)
@@ -187,12 +144,9 @@ void
 		return ;
 	max = pw_get_max(b);
 	pw_split_to_a(a, b, pw_get_avg(b), b->size);
-	while ((((int*)a->data)[a->size - 1] == ((int*)a->data)[0] + 1 ||
-		((int*)a->data)[a->size - 1] == 1) && !pw_is_sorted(a))
-	{
-		pw_rotate(a, b);
-		pw_log(a, b, "ra");
-	}
+	while ((ARRAY_DATA(a, a->size - 1) == ARRAY_DATA(a, 0) + 1 ||
+		ARRAY_DATA(a, a->size - 1) == 1) && !pw_is_sorted(a))
+		pw_rotate(a, b, "ra");
 	ft_push_swap(a, b);
 	if (pw_get_size(a, max) >= 20)
 		pw_backtrack_2(a, b, max);

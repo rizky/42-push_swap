@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 00:25:08 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 04:46:02 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int 		g_istotal;
 int 		g_isanimated;
 int 		g_delay;
 
-void		pw_swap(t_array *d, t_array *dv);
-void		pw_push(t_array *source, t_array *dest);
-void		pw_rotate(t_array *d, t_array *dv);
-void		pw_rev_rotate(t_array *d, t_array *dv);
+void		pw_swap(t_array *d, t_array *dv, char *instr);
+void		pw_push(t_array *source, t_array *dest, char *instr);
+void		pw_rotate(t_array *d, t_array *dv, char *instr);
+void		pw_rev_rotate(t_array *d, t_array *dv, char *instr);
+void		pw_rev_rotate_r(t_array *d, t_array *dv, char *instr);
 
 void		ft_push_swap_simple(t_array *a, t_array *b);
 void		ft_push_swap_backtrack(t_array *a, t_array *b);
