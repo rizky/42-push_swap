@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 23:52:50 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:36:54 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,45 +69,40 @@ int
 }
 
 int
-	pw_is_sorted(t_array *v)
+	pw_check_dups(t_array *d, int num)
 {
-	int	i;
+	size_t	i;
 
-	if (v->size == 0)
-		return (1);
-	i = v->size - 1;
-	while (i > 0)
+	if (d->size == 0)
+		return (0);
+	i = 0;
+	while (i < d->size)
 	{
-		if (ARRAY_DATA(v, i - 1) < ARRAY_DATA(v, i))
-			return (0);
-		i--;
+		if (ARRAY_DATA(d, i) == num)
+			return (1);
+		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int
-	pw_getoptions(char **av)
+	pw_get_arg(t_array *a, int i, int ac, char **av)
 {
-	int i;
+	int			num;
 
-	i = 1;
-	g_isverbose = 0;
-	g_iscolor = 0;
-	while (av[i] && av[i][0] == '-')
+	*a = NEW_ARRAY(int);
+	fta_resize(a, ac - i);
+	while (i < ac)
 	{
-		if (ft_strcmp(av[i], "-t") == 0)
-			g_istotal = 1;
-		if (ft_strcmp(av[i], "-v") == 0)
-			g_isverbose = 1;
-		if (ft_strcmp(av[i], "-c") == 0)
-			g_iscolor = 1;
-		if (ft_strcmp(av[i], "-a") == 0)
+		num = ft_atoi(av[i]);
+		if ((num == 0 && !ft_isdigit(av[i][0])
+			&& av[i][1] != '0') || pw_check_dups(a, num))
 		{
-			g_isanimated = 1;
-			i++;
-			g_delay = ft_atoi(av[i]);
+			ft_dprintf(2, "Error\n");
+			return (-1);
 		}
+		fta_insert(a, &num, 1, 0);
 		i++;
 	}
-	return (i);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:32:45 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/10 20:29:04 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:33:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,21 @@ void
 	index = pw_partition_array(v, left, right, pivot);
 	pw_sortdata(v, left, index - 1);
 	pw_sortdata(v, index, right);
+}
+
+int
+	pw_is_sorted(t_array *v)
+{
+	int	i;
+
+	if (v->size == 0)
+		return (1);
+	i = v->size - 1;
+	while (i > 0)
+	{
+		if (ARRAY_DATA(v, i - 1) < ARRAY_DATA(v, i))
+			return (0);
+		i--;
+	}
+	return (1);
 }

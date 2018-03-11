@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 05:26:46 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:35:34 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,36 @@ int
 	return ((int)(total / i + 0.5));
 }
 
-int
-	pw_get_arg(t_array *a, int i, int ac, char **av)
-{
-	int			num;
-
-	*a = NEW_ARRAY(int);
-	fta_resize(a, ac - i);
-	while (i < ac)
-	{
-		num = ft_atoi(av[i]);
-		if (num == 0 && !ft_isdigit(av[i][0])
-			&& av[i][1] != '0')
-		{
-			ft_dprintf(2, "Error\n");
-			return (-1);
-		}
-		fta_insert(a, &num, 1, 0);
-		i++;
-	}
-	return (1);
-}
-
-void
-	pw_log(t_array *a, t_array *b, char *instr)
-{
-	if (g_isverbose)
-		pw_print_stack(a, b);
-	else
-		ft_printfln("%s", instr);
-}
-
 void
 	pw_merge(t_array *a, t_array *b)
 {
 	while (b->size > 0)
 		pw_push(a, b, "pa");
+}
+
+int
+	pw_getoptions(char **av)
+{
+	int i;
+
+	i = 1;
+	g_isverbose = 0;
+	g_iscolor = 0;
+	while (av[i] && av[i][0] == '-')
+	{
+		if (ft_strcmp(av[i], "-t") == 0)
+			g_istotal = 1;
+		if (ft_strcmp(av[i], "-v") == 0)
+			g_isverbose = 1;
+		if (ft_strcmp(av[i], "-c") == 0)
+			g_iscolor = 1;
+		if (ft_strcmp(av[i], "-a") == 0)
+		{
+			g_isanimated = 1;
+			i++;
+			g_delay = ft_atoi(av[i]);
+		}
+		i++;
+	}
+	return (i);
 }

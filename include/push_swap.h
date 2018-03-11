@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 05:32:21 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 05:35:39 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			pw_get_max(t_array *d);
 int			pw_get_avg(t_array *d);
 int			pw_is_sorted(t_array *d);
 int			pw_getoptions(char **av);
-void		pw_log(t_array *a, t_array *b, char *instr);
 void		pw_merge(t_array *a, t_array *b);
 
 int			pw_get_size(t_array *d, int limit);
