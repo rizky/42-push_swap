@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_helper_1.c                                   :+:      :+:    :+:   */
+/*   pw_helper_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 05:36:54 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 23:06:19 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,18 @@ int
 	pw_get_arg(t_array *a, int i, int ac, char **av)
 {
 	int			num;
+	int			ismalloc;
 
 	*a = NEW_ARRAY(int);
 	fta_resize(a, ac - i);
+	ismalloc = 0;
+	if (ac - i == 1)
+	{
+		ac = ft_wordcounter(av[i], ' ');
+		av = ft_strsplit(av[i], ' ');
+		i = 0;
+		ismalloc = 1;
+	}
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);

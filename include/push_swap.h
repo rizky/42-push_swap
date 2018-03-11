@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 18:18:36 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 22:07:17 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# define ARRAY_DATA(D, I) ((int*)ARRAY_START(D))[I]
+# define ARRAY_DATA(D, I) ((int*)(D)->data)[I]
 
-int g_isverbose;
-int g_iscolor;
-int g_istotal;
-int g_isanimated;
-int g_delay;
+int         g_isverbose;
+int         g_iscolor;
+int         g_istotal;
+int         g_isanimated;
+int         g_delay;
 
 void        pw_swap(t_array *d, t_array *dv, char *instr);
 void		pw_push(t_array *source, t_array *dest, char *instr);
