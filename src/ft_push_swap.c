@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 05:25:29 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 15:33:53 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void
 		pw_backtrack_split(a, b, pw_get_max(a));
 	}
 	pw_backtrack(a, b, pw_get_max(a));
-	fta_clear(a);
-	fta_clear(b);
 }
 
 int
@@ -40,7 +38,10 @@ int
 	{
 		i = pw_getoptions(av);
 		if (pw_get_arg(&a, i, ac, av) == -1)
+		{
+			fta_clear(&a);
 			return (0);
+		}
 		pw_get_arg(&b, i, ac, av);
 		pw_sortdata(&b, 0, b.size - 1);
 		pw_rank(&a, &b);
@@ -49,4 +50,7 @@ int
 		else
 			ft_push_swap_backtrack(&a, &b);
 	}
+	fta_clear(&a);
+	fta_clear(&b);
+	return (0);
 }

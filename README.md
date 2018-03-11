@@ -19,14 +19,12 @@ Current Record:
 - 500 : 5500 | 7000 | 8500 | 10000 | 11500
 
 Test commands  
-- ARG=`ruby -e "puts (0..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker -v -c -a 10 $ARG
+- ARG=`ruby -e "puts (0..5).to_a.shuffle.join(' ')"`; OPT="-v -c -a 10"; ./push_swap $ARG | ./checker $OPT $ARG
 - make test ARG="`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`" OPT="-v -c -a 10"
 - make test_pw ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`"  | wc -l
 - make test_ch ARG="`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`"
-- while true
-do
-make test ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`" OPT="-t"
-done
+- while true; do { make test ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`" OPT="-t" }; done
+
 Improvement Task List  
 - Rotate vs Rev_Rotate depend on the distribution.
 - Devide by < 50%, < 75%, and < 100%
