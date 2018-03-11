@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+         #
+#    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/11 05:31:16 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/11 15:55:49 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FILES:= ft_pw_helper_1 ft_pw_helper_2 ft_pw_sort_data \
 		ft_pw_sort_backtrack_1 ft_pw_sort_backtrack_2
 
 # ----- Libft ------
-LFTDIR:=./libft
+LFTDIR:=./libft..
 # ==================
 
 # ------------------
