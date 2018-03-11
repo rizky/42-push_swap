@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 02:08:00 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 03:02:36 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void
 			}
 			else
 			{
-				if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b))
+				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1)
 				{
 					pw_push(a, b);
 					pw_log(a, b, "pa");
@@ -70,7 +70,7 @@ void
 			}
 			else
 			{
-				if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b))
+				if (ARRAY_DATA(b, b->size - 1) == ((int*)a->data)[0] + 1)
 				{
 					pw_push(a, b);
 					pw_log(a, b, "pa");
@@ -159,8 +159,17 @@ void
 	i = 0;
 	while (i < c)
 	{
-		pw_rev_rotate(a, b);
-		pw_log(a, b, "rra");
+		if (ARRAY_DATA(b, b->size - 1) != pw_get_max(b))
+		{
+			pw_rev_rotate(b, a);
+			pw_rev_rotate(a, b);
+			pw_log(a, b, "rrr");
+		}
+		else
+		{
+			pw_rev_rotate(a, b);
+			pw_log(a, b, "rra");
+		}
 		i++;
 	}
 	if (pw_get_min(b) == ARRAY_DATA(a, 0) + 1)

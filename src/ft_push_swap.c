@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 02:05:34 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 02:20:33 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int
 		if (a.size <= 5)
 			ft_push_swap_simple(&a, &b);
 		else
-			// ft_push_swap_segment(&a, &b);
 			ft_push_swap_backtrack(&a, &b);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 02:04:15 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/11 02:20:15 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,8 @@ void
 					pw_rotate(a, b);
 					pw_log(a, b, "ra");
 				}
-				pw_smart_rotate(b, a, pw_get_max(b) + 1);
+				else
+					pw_smart_rotate(b, a, pw_get_max(b) + 1);
 			}
 		}
 		else
@@ -164,8 +165,18 @@ void
 			}
 			else
 			{
-				pw_rotate(b, a);
-				pw_log(a, b, "rb");
+				if (ARRAY_DATA(b, b->size - 1) == pw_get_min(b))
+				{
+					pw_push(a, b);
+					pw_log(a, b, "pa");
+					pw_rotate(a, b);
+					pw_log(a, b, "ra");
+				}
+				else
+				{
+					pw_rotate(b, a);
+					pw_log(a, b, "rb");
+				}
 			}
 		}
 	}
@@ -234,13 +245,10 @@ void
 		return ;
 	pw_split_to_b(a, b, pw_get_avg(a), a->size);
 	pw_sort_segment(a, b, pw_get_avg(b));
-	pw_sort_segment(a, b, pw_get_max(b) + 1);
-	pw_split_to_b(a, b, pw_get_max(a) + 1, (int)a->size / 2);
-	pw_sort_segment(a, b, pw_get_avg(b));
-	pw_sort_segment(a, b, pw_get_max(b) + 1);
-	// pw_backtrack_2(a, b, pw_get_max(a));
-	// pw_backtrack_2(a, b, pw_get_max(a));
-	// pw_backtrack(a, b, pw_get_max(a));
+	ft_push_swap(a, b);
+	pw_backtrack_2(a, b, pw_get_max(a));
+	pw_backtrack_2(a, b, pw_get_max(a));
+	pw_backtrack(a, b, pw_get_max(a));
 	fta_clear(a);
 	fta_clear(b);
 }
