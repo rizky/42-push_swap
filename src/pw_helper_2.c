@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pw_helper_2.c                                   :+:      :+:    :+:   */
+/*   pw_helper_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 18:04:49 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 01:39:51 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int
+	pw_get_min(t_array *d)
+{
+	size_t	i;
+	int		min;
+
+	if (d->size == 0)
+		return (0);
+	i = 0;
+	min = ARRAY_DATA(d, i);
+	while (i < d->size)
+	{
+		if (min > ARRAY_DATA(d, i))
+			min = ARRAY_DATA(d, i);
+		i++;
+	}
+	return (min);
+}
 
 int
 	pw_get_size(t_array *d, int limit)
@@ -69,12 +88,7 @@ int
 		if (ft_strcmp(av[i], "-c") == 0)
 			g_iscolor = 1;
 		if (ft_strcmp(av[i], "-a") == 0)
-		{
 			g_isanimated = 1;
-			i++;
-			if (av[i] != '\0')
-				g_delay = ft_atoi(av[i]);
-		}
 		if (!g_istotal && !g_isverbose && !g_iscolor && !g_isanimated)
 			break ;
 		i++;

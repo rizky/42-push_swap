@@ -6,30 +6,11 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 00:22:11 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 01:26:22 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int
-	pw_get_min(t_array *d)
-{
-	size_t	i;
-	int		min;
-
-	if (d->size == 0)
-		return (0);
-	i = 0;
-	min = ARRAY_DATA(d, i);
-	while (i < d->size)
-	{
-		if (min > ARRAY_DATA(d, i))
-			min = ARRAY_DATA(d, i);
-		i++;
-	}
-	return (min);
-}
 
 int
 	pw_get_max(t_array *d)
@@ -69,7 +50,7 @@ int
 }
 
 int
-	pw_check_dups(t_array *d, int num)
+	pw_is_duplicate(t_array *d, int num)
 {
 	size_t	i;
 
@@ -86,23 +67,54 @@ int
 }
 
 int
+	pw_isint(char *str)
+{
+	long int	value;
+	int			sign;
+
+	value = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\f'
+			|| *str == '\r' || *str == '\v')
+		str++;
+	if (*str == '-')
+		sign = -1;
+	else
+		sign = 1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		value = value * 10 + (*str - '0');
+		str++;
+	}
+	if ((value * sign) <= 2147483647 && (value * sign) >= -2147483648)
+		return (1);
+	else
+		return (0);
+}
+
+int
 	pw_get_arg(t_array *a, int i, int ac, char **av)
 {
-	int			num;
+	int		num;
+	int		is_single;
 
 	*a = NEW_ARRAY(int);
-	fta_resize(a, ac - i);
+	is_single = 0;
 	if (ac - i == 1)
 	{
 		ac = ft_wordcounter(av[i], ' ');
 		av = ft_strsplit(av[i], ' ');
 		i = 0;
+		is_single = 1;
 	}
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
-		if ((num == 0 && !ft_isdigit(av[i][0])
-			&& av[i][1] != '0') || pw_check_dups(a, num))
+		if ((num == 0 && !ft_isdigit(av[i][0]) && av[i][1] != '0') ||
+			pw_is_duplicate(a, num) || !pw_isint(av[i]))
 		{
 			ft_dprintf(2, "Error\n");
 			return (-1);
@@ -110,5 +122,7 @@ int
 		fta_insert(a, &num, 1, 0);
 		i++;
 	}
+	if (is_single)
+		ft_strtab_free(av);
 	return (1);
 }

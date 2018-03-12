@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/11 22:07:17 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 01:41:22 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int         g_isverbose;
 int         g_iscolor;
 int         g_istotal;
 int         g_isanimated;
-int         g_delay;
 
 void        pw_swap(t_array *d, t_array *dv, char *instr);
 void		pw_push(t_array *source, t_array *dest, char *instr);
