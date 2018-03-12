@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 16:00:50 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:09:07 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int
 		return (1);
 	else
 		return (0);
-}	
+}
 
 void
 	pw_checker(char *line, t_array *a, t_array *b)
@@ -45,9 +45,7 @@ void
 	int			i;
 	int			index;
 	const char	*c = "spr";
-	const void	*op[] = {
-		&ch_swap, &ch_push, &ch_rotate, &ch_rev_rotate
-	};
+	const void	*op[] = {&ch_swap, &ch_push, &ch_rotate, &ch_rev_rotate};
 
 	i = 0;
 	index = 1;
