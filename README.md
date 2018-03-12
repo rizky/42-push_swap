@@ -21,7 +21,7 @@ Current Record:
 
 Test commands  
 - ARG=`ruby -e "puts (0..50).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG
-- make test ARG="`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`" OPT="-v -c -a 10"
+- make test ARG="`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`" OPT="-v -c -a"
 - make test_pw ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`"  | wc -l
 - make test_ch ARG="`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`"
 - while true; do { make test ARG="`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`" OPT="-t" }; done

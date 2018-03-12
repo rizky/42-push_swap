@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 20:01:53 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:15:24 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int
 			return (-1);
 		}
 		pw_checker(line, a, b);
-		if (opt[1])
+		if (opt[0])
 		{
 			pw_print_stack(a, b, opt);
 			ft_printfln("Exec %s:", line);
@@ -97,13 +97,6 @@ static int
 		ft_printfln("Total steps: %i", i);
 	return (0);
 }
-
-/*
-** opt[0] = -v for verbose
-** opt[1] = -c for color
-** opt[2] = -a for animation
-** opt[3] = -t fot total
-*/
 
 int
 	main(int ac, char **av)
