@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 01:26:22 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 01:55:54 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int
 	int		num;
 	int		is_single;
 
-	*a = NEW_ARRAY(int);
 	is_single = 0;
 	if (ac - i == 1)
 	{
@@ -122,7 +121,6 @@ int
 		fta_insert(a, &num, 1, 0);
 		i++;
 	}
-	if (is_single)
-		ft_strtab_free(av);
+	(is_single ? ft_strtab_free(av) : (void)is_single);
 	return (1);
 }

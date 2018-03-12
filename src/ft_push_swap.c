@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 18:49:14 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 00:53:43 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 01:52:56 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int
 	t_array		a;
 	t_array		b;
 
+	a = NEW_ARRAY(int);
+	b = NEW_ARRAY(int);
 	if (ac > 1)
 	{
 		i = 1;
