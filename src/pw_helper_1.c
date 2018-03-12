@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pw_helper_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 18:37:40 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:12:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,13 @@ int
 	{
 		num = ft_atoi(av[i]);
 		if ((num == 0 && !ft_isdigit(av[i][0]) && av[i][1] != '0') ||
-			pw_is_duplicate(a, num) || !pw_isint(av[i]))
+			pw_is_duplicate(a, num) || !pw_isint(av[i++]))
 		{
 			ft_dprintf(2, "Error\n");
 			(is_single ? ft_strtab_free(av) : (void)is_single);
 			return (-1);
 		}
 		fta_insert(a, &num, 1, 0);
-		i++;
 	}
 	(is_single ? ft_strtab_free(av) : (void)is_single);
 	return (1);
