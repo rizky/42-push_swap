@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/11 18:23:56 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/12 18:23:52 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,9 +117,7 @@ debug: $(NAME_C) $(NAME_PW)
 	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 
 norm:
-	@echo $(RED)
 	@norminette $(SRC) $(HDRPATH) | grep -v	Norme -B1 || true
-	@echo $(END)
 	@cd $(LFTDIR) && $(MAKE) norm
 
 .PHONY: all clean fclean re test norme test_ch test_pw debug

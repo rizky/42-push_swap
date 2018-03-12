@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 16:09:07 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:01:53 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,15 @@ void
 		(((void (*)())op[i])(b, a));
 }
 
+/*
+** opt[0] = -v for verbose
+** opt[1] = -c for color
+** opt[2] = -a for animation
+** opt[3] = -t fot total
+*/
+
 static int
-	pw_check_line(t_array *a, t_array *b)
+	pw_check_line(t_array *a, t_array *b, int *opt)
 {
 	int		i;
 	char	*line;
@@ -74,48 +81,55 @@ static int
 		if (!pw_is_line_valid(line))
 		{
 			ft_dprintf(2, "Error\n");
+			free(line);
 			return (-1);
 		}
 		pw_checker(line, a, b);
-		if (g_isverbose)
+		if (opt[1])
 		{
-			pw_print_stack(a, b);
+			pw_print_stack(a, b, opt);
 			ft_printfln("Exec %s:", line);
 		}
 		free(line);
 		i++;
 	}
-	if (g_istotal)
+	if (opt[3])
 		ft_printfln("Total steps: %i", i);
 	return (0);
 }
 
+/*
+** opt[0] = -v for verbose
+** opt[1] = -c for color
+** opt[2] = -a for animation
+** opt[3] = -t fot total
+*/
+
 int
 	main(int ac, char **av)
 {
-	int			i;
 	t_array		a;
 	t_array		b;
+	int			*opt;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
+	opt = (int*)malloc(sizeof(int) * 4);
 	if (ac > 1)
 	{
-		i = pw_getoptions(av);
-		if (pw_get_arg(&a, i, ac, av) == -1)
-			return (0);
-		if (pw_check_line(&a, &b) == -1)
+		if (pw_get_arg(&a, pw_getoptions(av, &opt), ac, av) != -1)
 		{
-			fta_clear(&a);
-			fta_clear(&b);
-			return (0);
+			if (pw_check_line(&a, &b, opt) != -1)
+			{
+				if (b.size == 0 && pw_is_sorted(&a))
+					ft_printfln("OK");
+				else
+					ft_printfln("KO");
+			}
 		}
-		if (b.size == 0 && pw_is_sorted(&a))
-			ft_printfln("OK");
-		else
-			ft_printfln("KO");
 		fta_clear(&a);
 		fta_clear(&b);
+		free(opt);
 	}
 	return (0);
 }

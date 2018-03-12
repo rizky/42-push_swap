@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pw_helper_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 01:39:51 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:53:16 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,34 @@ void
 		pw_push(a, b, "pa");
 }
 
+/*
+** opt[0] = -v for verbose
+** opt[1] = -c for color
+** opt[2] = -a for animation
+** opt[3] = -t fot total
+*/
+
 int
-	pw_getoptions(char **av)
+	pw_getoptions(char **av, int **opt)
 {
 	int i;
 
 	i = 1;
-	g_isverbose = 0;
-	g_iscolor = 0;
+	(*opt)[0] = 0;
+	(*opt)[1] = 0;
+	(*opt)[2] = 0;
+	(*opt)[3] = 0;
 	while (av[i] && av[i][0] == '-')
 	{
-		if (ft_strcmp(av[i], "-t") == 0)
-			g_istotal = 1;
 		if (ft_strcmp(av[i], "-v") == 0)
-			g_isverbose = 1;
+			(*opt)[0] = 1;
 		if (ft_strcmp(av[i], "-c") == 0)
-			g_iscolor = 1;
+			(*opt)[1] = 1;
 		if (ft_strcmp(av[i], "-a") == 0)
-			g_isanimated = 1;
-		if (!g_istotal && !g_isverbose && !g_iscolor && !g_isanimated)
+			(*opt)[2] = 1;
+		if (ft_strcmp(av[i], "-t") == 0)
+			(*opt)[3] = 1;
+		if (!(*opt)[0] && !(*opt)[1] && !(*opt)[2] && !(*opt)[3])
 			break ;
 		i++;
 	}
