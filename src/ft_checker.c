@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/17 16:57:59 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 17:00:08 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,25 @@ int
 	t_array		a;
 	t_array		b;
 	t_array		opt;
+	int			ret;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
 	opt = NEW_ARRAY(int);
+	ret = 0;
 	if (ac > 1)
 	{
-		if (pw_get_arg(&a, pw_getoptions(av, &opt), ac, av) != -1)
-		{
-			if (pw_check_line(&a, &b, &opt) != -1)
+		if ((ret = pw_get_arg(&a, pw_getoptions(av, &opt), ac, av)) != -1)
+			if ((ret = pw_check_line(&a, &b, &opt)) != -1)
 			{
 				if (b.size == 0 && pw_is_sorted(&a))
 					ft_printfln("OK");
 				else
 					ft_printfln("KO");
 			}
-		}
 		fta_clear(&a);
 		fta_clear(&b);
 		fta_clear(&opt);
 	}
-	return (0);
+	return (ret);
 }

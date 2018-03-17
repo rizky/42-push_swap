@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pw_helper_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnugroho <rnugroho@students.42.fr>         +#+  +:+       +#+        */
+/*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 22:12:29 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 17:02:03 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ int
 			pw_is_duplicate(a, num) || !pw_isint(av[i++]))
 		{
 			ft_dprintf(2, "Error\n");
-			(is_single ? ft_strtab_free(av) : (void)is_single);
+			(is_single ? ft_strtab_free(av) : 0);
 			return (-1);
 		}
 		fta_insert(a, &num, 1, 0);
 	}
-	(is_single ? ft_strtab_free(av) : (void)is_single);
+	(is_single ? ft_strtab_free(av) : 0);
 	return (1);
 }
