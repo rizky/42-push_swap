@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:35:43 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 18:17:45 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:10:40 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "libft.h"
 # define ARRAY_DATA(D, I) ((int*)(D)->data)[I]
+# define OPT_V 0
+# define OPT_C 1
+# define OPT_A 2
+# define OPT_T 3
 
 void		pw_swap(t_array *d, t_array *dv, char *instr);
 void		pw_push(t_array *source, t_array *dest, char *instr);
@@ -37,7 +41,7 @@ void		pw_backtrack_split(t_array *a, t_array *b, int limit);
 void		pw_backtrack(t_array *a, t_array *b, int limit);
 void		pw_split_to_b(t_array *a, t_array *b, int avg, int size);
 void		pw_split_to_a(t_array *a, t_array *b, int avg, int size);
-void		pw_print_stack(t_array *a, t_array *b, int *opt);
+void		pw_print_stack(t_array *a, t_array *b, t_array *opt);
 
 int			pw_get_arg(t_array *a, int i, int ac, char **av);
 void		ft_push_swap(t_array *a, t_array *b);
@@ -46,7 +50,7 @@ int			pw_get_min(t_array *d);
 int			pw_get_max(t_array *d);
 int			pw_get_avg(t_array *d);
 int			pw_is_sorted(t_array *d);
-int			pw_getoptions(char **av, int **opt);
+int			pw_getoptions(char **av, t_array *opt);
 void		pw_merge(t_array *a, t_array *b);
 
 int			pw_get_size(t_array *d, int limit);

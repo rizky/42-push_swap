@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 19:53:16 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:38:21 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,28 @@ void
 		pw_push(a, b, "pa");
 }
 
-/*
-** opt[0] = -v for verbose
-** opt[1] = -c for color
-** opt[2] = -a for animation
-** opt[3] = -t fot total
-*/
-
 int
-	pw_getoptions(char **av, int **opt)
+	pw_getoptions(char **av, t_array *opt)
 {
-	int i;
-
-	i = 1;
-	(*opt)[0] = 0;
-	(*opt)[1] = 0;
-	(*opt)[2] = 0;
-	(*opt)[3] = 0;
-	while (av[i] && av[i][0] == '-')
+	int 		i;
+	int			j;
+	const char 	*c_opt = "vcat";
+	int			c;
+	int			num;
+	
+	c = 0;
+	num = 0;
+	while (c_opt[c++])
+		fta_append(opt, &num, 1);
+	i = 0;
+	while (av[++i] && av[i][0] == '-')
 	{
-		if (ft_strcmp(av[i], "-v") == 0)
-			(*opt)[0] = 1;
-		if (ft_strcmp(av[i], "-c") == 0)
-			(*opt)[1] = 1;
-		if (ft_strcmp(av[i], "-a") == 0)
-			(*opt)[2] = 1;
-		if (ft_strcmp(av[i], "-t") == 0)
-			(*opt)[3] = 1;
-		if (!(*opt)[0] && !(*opt)[1] && !(*opt)[2] && !(*opt)[3])
-			break ;
-		i++;
+		j = 0;
+		while (av[i][++j])
+			if ((c = is_in(av[i][j], c_opt)) != -1)
+				ARRAY_DATA(opt, c) = 1;
+			else
+				return (i);
 	}
 	return (i);
 }

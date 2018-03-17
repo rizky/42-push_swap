@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 18:27:10 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:38:17 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,28 @@ static void
 	system("clear");
 }
 
-/*
-** opt[0] = -v for verbose
-** opt[1] = -c for color
-** opt[2] = -a for animation
-** opt[3] = -t fot total
-*/
-
 void
-	pw_print_stack(t_array *a, t_array *b, int *opt)
+	pw_print_stack(t_array *a, t_array *b, t_array *opt)
 {
 	int			i;
 	int			max;
 
-	if (opt[2])
+	if (ARRAY_DATA(opt, OPT_A))
 		pw_print_delay();
 	max = (pw_get_max(a) > pw_get_max(b) ? pw_get_max(a) : pw_get_max(b));
 	i = a->size + b->size + 1;
 	while (i >= 0)
 	{
 		if (i < (int)a->size)
-			ft_printf("%*w%3d %*Q%*Q%w\t", pw_print_color(a, i, 1, opt[1]),
+			ft_printf("%*w%3d %*Q%*Q%w\t",
+			pw_print_color(a, i, 1,ARRAY_DATA(opt, OPT_C)),
 			ARRAY_DATA(a, i), ABS(ARRAY_DATA(a, i)), '-',
 			max - ABS(ARRAY_DATA(a, i)), ' ');
 		else
 			ft_printf("%*Q\t", max + 4, ' ');
 		if (i < (int)b->size)
-			ft_printfln("%*w%3d %*Q%*Q%w", pw_print_color(b, i, -1, opt[1]),
+			ft_printfln("%*w%3d %*Q%*Q%w",
+			pw_print_color(b, i, -1, ARRAY_DATA(opt, OPT_C)),
 			ARRAY_DATA(b, i), ABS(ARRAY_DATA(b, i)), '-',
 			max - ABS(ARRAY_DATA(b, i)), ' ');
 		else

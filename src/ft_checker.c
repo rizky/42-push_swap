@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/12 20:42:23 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:38:15 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,8 @@ void
 		(((void (*)())op[i])(b, a));
 }
 
-/*
-** opt[0] = -v for verbose
-** opt[1] = -c for color
-** opt[2] = -a for animation
-** opt[3] = -t fot total
-*/
-
 static int
-	pw_check_line(t_array *a, t_array *b, int *opt)
+	pw_check_line(t_array *a, t_array *b, t_array *opt)
 {
 	int		i;
 	char	*line;
@@ -85,7 +78,7 @@ static int
 			return (-1);
 		}
 		pw_checker(line, a, b);
-		if (opt[0])
+		if (ARRAY_DATA(opt, OPT_V))
 		{
 			pw_print_stack(a, b, opt);
 			ft_printfln("Exec %s:", line);
@@ -93,7 +86,7 @@ static int
 		free(line);
 		i++;
 	}
-	if (opt[3])
+	if (ARRAY_DATA(opt, OPT_T))
 		ft_printfln("Total steps: %i", i);
 	return (0);
 }
@@ -103,16 +96,16 @@ int
 {
 	t_array		a;
 	t_array		b;
-	int			*opt;
+	t_array		opt;
 
 	a = NEW_ARRAY(int);
 	b = NEW_ARRAY(int);
-	opt = (int*)malloc(sizeof(int) * 4);
+	opt = NEW_ARRAY(int);
 	if (ac > 1)
 	{
 		if (pw_get_arg(&a, pw_getoptions(av, &opt), ac, av) != -1)
 		{
-			if (pw_check_line(&a, &b, opt) != -1)
+			if (pw_check_line(&a, &b, &opt) != -1)
 			{
 				if (b.size == 0 && pw_is_sorted(&a))
 					ft_printfln("OK");
@@ -122,7 +115,7 @@ int
 		}
 		fta_clear(&a);
 		fta_clear(&b);
+		fta_clear(&opt);
 	}
-	free(opt);
 	return (0);
 }
