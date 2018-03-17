@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/17 16:38:15 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/17 16:57:59 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ static int
 			return (-1);
 		}
 		pw_checker(line, a, b);
-		if (ARRAY_DATA(opt, OPT_V))
+		if (ARRAY_DATA(opt, OPT_V) && (a->size + b->size) <= 100 &&
+			pw_get_max(a) <= 100 && pw_get_max(b) <= 100 &&
+			pw_get_max(a) >= -100 && pw_get_max(b) >= -100)
 		{
 			pw_print_stack(a, b, opt);
 			ft_printfln("Exec %s:", line);
@@ -86,8 +88,7 @@ static int
 		free(line);
 		i++;
 	}
-	if (ARRAY_DATA(opt, OPT_T))
-		ft_printfln("Total steps: %i", i);
+	(ARRAY_DATA(opt, OPT_T)) ? ft_printfln("Total steps: %i", i) : 0;
 	return (0);
 }
 
