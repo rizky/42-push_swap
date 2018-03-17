@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/12 18:23:52 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/17 22:22:17 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,62 @@ debug_pw: $(NAME_PW)
 debug: $(NAME_C) $(NAME_PW)
 	@$(COMPILER) -g $(IFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
+
+check_leak: $(NAME_C) $(NAME_PW)
+	valgrind ./push_swap 2>&1 | grep lost
+	valgrind ./push_swap "1 2" 2>&1 | grep lost
+	valgrind ./push_swap "2 2" 2>&1 | grep lost
+	valgrind ./push_swap "a 2" 2>&1 | grep lost
+	valgrind ./push_swap "2147483649" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker 2>&1 | grep lost
+	echo "sa" | valgrind ./checker 1 2 2>&1 | grep lost
+	echo "sa" | valgrind ./checker "2 2" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker "a 2" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker "2147483649" 2>&1 | grep lost
+	echo "sa " | valgrind ./checker "1 2" 2>&1 | grep lost
+	echo "  sa" | valgrind ./checker "1 2" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker -v "1 2" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker -vact "1 2" 2>&1 | grep lost
+	echo "sa" | valgrind ./checker -g "1 2" 2>&1 | grep lost
+	ARG=`ruby -e "puts (1..30).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | valgrind ./checker -t $$ARG 2>&1 | grep lost
+	ARG=`ruby -e "puts (1..30).to_a.shuffle.join(' ')"`; valgrind ./push_swap $$ARG 2>&1 | grep lost
+
+check_error: $(NAME_C) $(NAME_PW)
+	./checker a 2>&1 | cat -e
+	./checker 1 1 2>&1 | cat -e
+	./checker 2147483649 2>&1 | cat -e
+	./checker 2>&1 | cat -e
+	echo "swap" | ./checker "1 2" 2>&1 | cat -e
+	echo "sa  " | ./checker "1 2" 2>&1 | cat -e
+	echo "  sa" | ./checker "1 2" 2>&1 | cat -e
+	./checker -g 2>&1 | cat -e
+	./checker -catgv 2>&1 | cat -e
+	./push_swap a 2>&1 | cat -e
+	./push_swap 1 1 2>&1 | cat -e
+	./push_swap -2147483649 2>&1 | cat -e
+	./push_swap 2>&1 | cat -e
+
+check_ko: $(NAME_C)
+	echo "sa\npb\nrrr" | ./checker 0 9 1 8 2 7 3 6 4 5
+	echo "sa\npb\nrrr" | ./checker "3 2 5 1"
+
+check_ok: $(NAME_C) $(NAME_PW)
+	echo "\0" | ./checker 0 1 2
+	echo "pb\nra\npb\nra\nsa\nra\npa\npa" | ./checker 0 9 1 8 2
+	echo "sa" | ./checker 1 0 2
+
+check_pw:
+	./push_swap 42
+	./push_swap 0 1 2 3
+	./push_swap 0 1 2 3 4 5 6 7 8 9
+	ARG="2 1 0"; ./push_swap $$ARG | ./checker -t $$ARG
+	ARG="1 5 2 4 3"; ./push_swap $$ARG | ./checker -t $$ARG
+	ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | ./checker -t $$ARG
+	ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | ./checker -t $$ARG
+	ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | ./checker -t $$ARG
+
+check_bonus:
+	ARG=`ruby -e "puts (1..30).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | ./checker -vcat $$ARG
 
 norm:
 	@norminette $(SRC) $(HDRPATH) | grep -v	Norme -B1 || true
