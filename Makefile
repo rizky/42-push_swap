@@ -6,7 +6,7 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/17 22:22:17 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/17 22:35:55 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,8 @@ debug: $(NAME_C) $(NAME_PW)
 	@$(COMPILER) -g $(IFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 
+check: check_leak check_error check_ko check_ok check_pw
+
 check_leak: $(NAME_C) $(NAME_PW)
 	valgrind ./push_swap 2>&1 | grep lost
 	valgrind ./push_swap "1 2" 2>&1 | grep lost
@@ -176,4 +178,4 @@ norm:
 	@norminette $(SRC) $(HDRPATH) | grep -v	Norme -B1 || true
 	@cd $(LFTDIR) && $(MAKE) norm
 
-.PHONY: all clean fclean re test norme test_ch test_pw debug
+.PHONY: all clean fclean re test norme test_ch test_pw debug check
