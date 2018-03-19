@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/17 16:38:17 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/19 10:14:29 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void
 	{
 		if (i < (int)a->size)
 			ft_printf("%*w%3d %*Q%*Q%w\t",
-			pw_print_color(a, i, 1,ARRAY_DATA(opt, OPT_C)),
+			pw_print_color(a, i, 1, ARRAY_DATA(opt, OPT_C)),
 			ARRAY_DATA(a, i), ABS(ARRAY_DATA(a, i)), '-',
 			max - ABS(ARRAY_DATA(a, i)), ' ');
 		else

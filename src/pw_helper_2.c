@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 12:24:33 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/17 16:38:21 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/03/19 10:14:14 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void
 int
 	pw_getoptions(char **av, t_array *opt)
 {
-	int 		i;
+	int			i;
 	int			j;
-	const char 	*c_opt = "vcat";
+	const char	*c_opt = "vcat";
 	int			c;
 	int			num;
-	
+
 	c = 0;
 	num = 0;
 	while (c_opt[c++])
