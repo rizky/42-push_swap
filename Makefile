@@ -6,11 +6,11 @@
 #    By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by rnugroho          #+#    #+#              #
-#    Updated: 2018/03/18 07:48:20 by rnugroho         ###   ########.fr        #
+#    Updated: 2018/03/21 14:02:59 by rnugroho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_C:= checker
+NAME:= checker
 NAME_PW:= push_swap
 FILE_C:= ft_checker
 FILE_PW:= ft_push_swap 
@@ -30,7 +30,7 @@ HDRPATH:=include/
 CCHPATH:=obj/
 IFLAGS:=-I $(HDRPATH) -I $(LFTDIR)/include
 LFLAGS:=-L $(LFTDIR) -lft
-CFLAGS:=-Wall -Wextra $(IFLAGS)
+CFLAGS:=-Wall -Wextra -Werror $(IFLAGS)
 # ==================
 
 # ----- Colors -----
@@ -53,12 +53,12 @@ OBJ_PW:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILE_PW)))
 # ==================
 CCHF:=.cache_exists
 
-all: $(NAME_PW) $(NAME_C)
+all: $(NAME_PW) $(NAME)
 
-$(NAME_C): $(OBJ) $(OBJ_C)
+$(NAME): $(OBJ) $(OBJ_C)
 	@cd $(LFTDIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_C).c -o $(NAME_C)
+	@$(COMPILER) $(CFLAGS) $(SRC) $(LFLAGS) $(SRCPATH)$(FILE_C).c -o $(NAME)
 	@echo $(GREEN) " - OK" $(EOC)
 
 $(NAME_PW): $(OBJ) $(OBJ_PW)
@@ -84,21 +84,21 @@ clean:
 	@cd $(LFTDIR) && $(MAKE) clean
 
 fclean: clean
-	@rm -f $(NAME_C)
+	@rm -f $(NAME)
 	@rm -f $(NAME_PW)
-	@rm -rf $(NAME_C).dSYM/
+	@rm -rf $(NAME).dSYM/
 	@rm -rf $(NAME_PW).dSYM/
 	@cd $(LFTDIR) && $(MAKE) fclean
 
 re: fclean
 	@$(MAKE) all
 
-test: $(NAME_C) $(NAME_PW)
+test: $(NAME) $(NAME_PW)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 	@./push_swap $(ARG) | ./checker $(OPT) $(ARG)
 
-test_ch: $(NAME_C)
+test_ch: $(NAME)
 	@$(COMPILER) -g -w $(CFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@./push_swap $(ARG) | ./checker $(ARG)
 
@@ -112,13 +112,13 @@ debug_pw: $(NAME_PW)
 	@ ./push_swap $(OPT) $(ARG)
 	@ echo $(ARG) > input.txt
 
-debug: $(NAME_C) $(NAME_PW)
+debug: $(NAME) $(NAME_PW)
 	@$(COMPILER) -g $(IFLAGS) $(SRC_C) $(SRC) $(LFLAGS) -o checker
 	@$(COMPILER) -g $(IFLAGS) $(SRC_PW) $(SRC) $(LFLAGS) -o push_swap
 
 check: check_leak check_error check_ko check_ok check_pw
 
-check_leak: $(NAME_C) $(NAME_PW)
+check_leak: $(NAME) $(NAME_PW)
 	valgrind ./push_swap 2>&1 | grep lost
 	valgrind ./push_swap "1 2" 2>&1 | grep lost
 	valgrind ./push_swap "2 2" 2>&1 | grep lost
@@ -137,7 +137,7 @@ check_leak: $(NAME_C) $(NAME_PW)
 	ARG=`ruby -e "puts (1..30).to_a.shuffle.join(' ')"`; ./push_swap $$ARG | valgrind ./checker -t $$ARG 2>&1 | grep lost
 	ARG=`ruby -e "puts (1..30).to_a.shuffle.join(' ')"`; valgrind ./push_swap $$ARG 2>&1 | grep lost
 
-check_error: $(NAME_C) $(NAME_PW)
+check_error: $(NAME) $(NAME_PW)
 	./checker a 2>&1 | cat -e
 	./checker 1 1 2>&1 | cat -e
 	./checker 2147483649 2>&1 | cat -e
@@ -152,11 +152,11 @@ check_error: $(NAME_C) $(NAME_PW)
 	./push_swap -2147483649 2>&1 | cat -e
 	./push_swap 2>&1 | cat -e
 
-check_ko: $(NAME_C)
+check_ko: $(NAME)
 	echo "sa\npb\nrrr" | ./checker 0 9 1 8 2 7 3 6 4 5
 	echo "sa\npb\nrrr" | ./checker "3 2 5 1"
 
-check_ok: $(NAME_C) $(NAME_PW)
+check_ok: $(NAME) $(NAME_PW)
 	echo "\0" | ./checker 0 1 2
 	echo "pb\nra\npb\nra\nsa\nra\npa\npa" | ./checker 0 9 1 8 2
 	echo "sa" | ./checker 1 0 2
