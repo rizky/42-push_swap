@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:30:36 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/17 17:00:08 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/04/22 12:23:45 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int
 	if (ft_strnequ(line, "sa", 3))
 		return (1);
 	else if (ft_strnequ(line, "sb", 3))
+		return (1);
+	else if (ft_strnequ(line, "ss", 3))
 		return (1);
 	else if (ft_strnequ(line, "pa", 3))
 		return (1);
@@ -56,6 +58,8 @@ void
 		i = 3;
 		index++;
 	}
+	if (line[0] == 's' && line[index] == 's')
+		line[index] = 'r';
 	if (line[index] == 'a' || line[index] == 'r')
 		(((void (*)())op[i])(a, b));
 	if (line[index] == 'b' || line[index] == 'r')
