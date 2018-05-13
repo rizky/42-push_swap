@@ -6,7 +6,7 @@
 /*   By: rnugroho <rnugroho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 13:58:58 by rnugroho          #+#    #+#             */
-/*   Updated: 2018/03/19 10:14:29 by rnugroho         ###   ########.fr       */
+/*   Updated: 2018/05/13 15:54:26 by rnugroho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void
 	pw_print_delay(void)
 {
 	system("sleep 0.05");
-	system("clear");
+	ft_printf("%0.0v");
 }
 
 void
@@ -60,7 +60,7 @@ void
 			ARRAY_DATA(b, i), ABS(ARRAY_DATA(b, i)), '-',
 			max - ABS(ARRAY_DATA(b, i)), ' ');
 		else
-			ft_printf("\n");
+			ft_printfln("%*Q\t", max + 4, ' ');
 		i--;
 	}
 }
