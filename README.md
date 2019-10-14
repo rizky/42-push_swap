@@ -10,7 +10,7 @@ git clone --recurse-submodules https://github.com/rizkyario/42-push_swap.git; cd
 
 ## Usage:
 ```
-ARG=`ruby -e "puts (1..50).to_a.shuffle.join(' ')"``; ./push_swap $ARG | ./checker -vcat $ARG
+ARG=`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker -vcat $ARG
 ```
 
 ## Resources:
